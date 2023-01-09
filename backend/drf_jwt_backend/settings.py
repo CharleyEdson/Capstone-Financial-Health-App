@@ -28,6 +28,8 @@ ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'authentication.User'
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +42,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
-    'cars.apps.CarsConfig'  # This app is for example use only
+    'cars.apps.CarsConfig',  # This app is for example use only
+    'userInfo',
+    'Asset',
+    'Liability',
+    'Income',
+    'Expense'
 ]
 
 MIDDLEWARE = [
