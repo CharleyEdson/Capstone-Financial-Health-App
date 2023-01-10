@@ -1,0 +1,647 @@
+{
+	"info": {
+		"_postman_id": "29016f02-0be6-4a05-bf12-b9bb4500c23c",
+		"name": "Capstone-Back End",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23819916"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"dantheman\",\r\n    \"password\": \"password1@\",\r\n    \"email\": \"dan@devcodecamp.com\",\r\n    \"first_name\": \"Daniel\",\r\n    \"last_name\": \"Tulpa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/register/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"alexthegreat\",\r\n    \"password\": \"Didoap#@2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh_Access",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"PASTE REFRESH TOKEN FROM LOGIN HERE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login/refresh/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "GET all cars (unprotected)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/cars/all/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"cars",
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET cars for user (protected)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4MTU2ODM5LCJpYXQiOjE2NDcyOTI4MzksImp0aSI6ImJjYzJhZTUzOTRlYzQ3OThiNjI0YTcwYTYzYjcxOThmIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJqanZlZ2EiLCJmaXJzdF9uYW1lIjoiIn0.l9ATW5CpWF2TGniqVgU1I-a8LkuqgLQ4ok3tJh6asAA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/cars/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"cars",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST new car for user (protected)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4MTU3MjczLCJpYXQiOjE2NDcyOTMyNzMsImp0aSI6IjIyMDQ4YTg2NzEzMTQyMmZhZjJmNDNmYmI2MTExZDg2IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.DeTe47E7-9eCr7xKE22m3CvFMDj0Sxye5A6ndwJ024M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"make\": \"Ford\",\n    \"model\": \"F150\",\n    \"year\": 1999\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/cars/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"cars",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Info",
+			"item": [
+				{
+					"name": "(GET) User Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MjQ2ODA0LCJpYXQiOjE2NzMzODI4MDQsImp0aSI6IjA0MTgxNTVmYWQwYzRmOGY5YTM3NzgzYjY0NWQ5MjY4IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.CHQGcKZ1SidjCR0mYXlbI426kd9UKlUni6EceDY-In4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/userinfo/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"userinfo",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(POST) Create User Info",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MjQ2ODA0LCJpYXQiOjE2NzMzODI4MDQsImp0aSI6IjA0MTgxNTVmYWQwYzRmOGY5YTM3NzgzYjY0NWQ5MjY4IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.CHQGcKZ1SidjCR0mYXlbI426kd9UKlUni6EceDY-In4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Alex\",\r\n    \"last_name\": \"Ovechkin\",\r\n    \"email\": \"ovie8@capitals.com\",\r\n    \"phone_number\": \"3104659981\",\r\n    \"age\": 37,\r\n    \"gender\": \"Male\",\r\n    \"occupation\": \"Hockey Player\",\r\n    \"risk_level\": 8,\r\n    \"state_living_in\": \"VA\",\r\n    \"relationship_status\": \"Married\",\r\n    \"budget_value\": 10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/userinfo/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"userinfo",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Asset",
+			"item": [
+				{
+					"name": "(POST) Create Asset",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MjQ2ODA0LCJpYXQiOjE2NzMzODI4MDQsImp0aSI6IjA0MTgxNTVmYWQwYzRmOGY5YTM3NzgzYjY0NWQ5MjY4IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.CHQGcKZ1SidjCR0mYXlbI426kd9UKlUni6EceDY-In4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"asset_type\": \"Investments\",\r\n    \"value\": 1000000,\r\n    \"date\": \"2023-01-09\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/assets/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"assets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET assets for user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MjQ2ODA0LCJpYXQiOjE2NzMzODI4MDQsImp0aSI6IjA0MTgxNTVmYWQwYzRmOGY5YTM3NzgzYjY0NWQ5MjY4IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.CHQGcKZ1SidjCR0mYXlbI426kd9UKlUni6EceDY-In4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/assets/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"assets",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Liability",
+			"item": [
+				{
+					"name": "(POST) Create Liability",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MjQ2ODA0LCJpYXQiOjE2NzMzODI4MDQsImp0aSI6IjA0MTgxNTVmYWQwYzRmOGY5YTM3NzgzYjY0NWQ5MjY4IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.CHQGcKZ1SidjCR0mYXlbI426kd9UKlUni6EceDY-In4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type_of_liability\": \"Mortgage\",\r\n    \"value\": 500000,\r\n    \"date\": \"2023-01-09\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/liabilities/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"liabilities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Liability for user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MjQ2ODA0LCJpYXQiOjE2NzMzODI4MDQsImp0aSI6IjA0MTgxNTVmYWQwYzRmOGY5YTM3NzgzYjY0NWQ5MjY4IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.CHQGcKZ1SidjCR0mYXlbI426kd9UKlUni6EceDY-In4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/liabilities/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"liabilities",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Income",
+			"item": [
+				{
+					"name": "(POST) Create Income",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MTY1MzcwLCJpYXQiOjE2NzMzMDEzNzAsImp0aSI6Ijc4NDVmNWEwZTY4YTQ0ZmM4NWE2YjVhODQ2NDI5ODdiIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.FPBdm0GRJWkTIlg31FbDaRH_84J32eIDcPvjWIBjBBE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type_of_liability\": \"Mortgage\",\r\n    \"value\": 500000,\r\n    \"date\": \"2023-01-09\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/liabilities/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"liabilities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Incomes for user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MTY1MzcwLCJpYXQiOjE2NzMzMDEzNzAsImp0aSI6Ijc4NDVmNWEwZTY4YTQ0ZmM4NWE2YjVhODQ2NDI5ODdiIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.FPBdm0GRJWkTIlg31FbDaRH_84J32eIDcPvjWIBjBBE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/income/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"income",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Expenses",
+			"item": [
+				{
+					"name": "(POST) Create Expense",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MTY1MzcwLCJpYXQiOjE2NzMzMDEzNzAsImp0aSI6Ijc4NDVmNWEwZTY4YTQ0ZmM4NWE2YjVhODQ2NDI5ODdiIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.FPBdm0GRJWkTIlg31FbDaRH_84J32eIDcPvjWIBjBBE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type_of_liability\": \"Mortgage\",\r\n    \"value\": 500000,\r\n    \"date\": \"2023-01-09\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/expenses/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"expenses",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Expenses for user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MTY1MzcwLCJpYXQiOjE2NzMzMDEzNzAsImp0aSI6Ijc4NDVmNWEwZTY4YTQ0ZmM4NWE2YjVhODQ2NDI5ODdiIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJhbGV4dGhlZ3JlYXQiLCJmaXJzdF9uYW1lIjoiQWxleCJ9.FPBdm0GRJWkTIlg31FbDaRH_84J32eIDcPvjWIBjBBE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/expenses/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"expenses",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
