@@ -4,4 +4,4 @@ from .models import Asset
 class AssetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asset
-        fields = ['asset_type', 'value', 'date']
+        fields = ['id','asset_type', 'value', 'date','user_id']
