@@ -20,7 +20,10 @@ class userInfo(models.Model):
     relationship_status = models.CharField(max_length=50)
     budget_value = models.IntegerField()
     user_ID = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_assets_monthly_ID = models.ForeignKey(Asset, on_delete=models.CASCADE, null=True)
-    user_liabilities_monthly_ID = models.ForeignKey(Liability, on_delete=models.CASCADE, null=True)
-    user_monthly_expenses_ID = models.ForeignKey(Expense, on_delete=models.CASCADE, null=True)
-    user_monthly_income_ID = models.ForeignKey(Income, on_delete=models.CASCADE, null=True)
+    user_assets_monthly_ID = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    user_liabilities_monthly_ID = models.ForeignKey(Liability, on_delete=models.CASCADE)
+    user_monthly_expenses_ID = models.ForeignKey(Expense, on_delete=models.CASCADE)
+    user_monthly_income_ID = models.ForeignKey(Income, on_delete=models.CASCADE)
+
+    ", null=True"
+    "This is after .cascade, on FKs"
