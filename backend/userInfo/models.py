@@ -20,9 +20,9 @@ class userInfo(models.Model):
     state_living_in = models.CharField(max_length=50)
     relationship_status = models.CharField(max_length=50)
     budget_value = models.IntegerField()
-    user_monthly_assets = models.ForeignKey(Asset, on_delete=models.CASCADE, null=True)
-    user_monthly_liabilities = models.ForeignKey(Liability, on_delete=models.CASCADE, null=True)
-    user_monthly_incomes = models.ForeignKey(Income, on_delete=models.CASCADE, null=True)
-    user_monthly_expenses = models.ForeignKey(Expense, on_delete=models.CASCADE, null=True)
+    user_monthly_assets = models.ForeignKey(Asset, on_delete=models.CASCADE, null=True, blank=True)
+    user_monthly_liabilities = models.ForeignKey(Liability, on_delete=models.CASCADE, null=True, blank=True)
+    user_monthly_incomes = models.ForeignKey(Income, on_delete=models.CASCADE, null=True, blank=True)
+    user_monthly_expenses = models.ForeignKey(Expense, on_delete=models.CASCADE, null=True, blank=True)
 
  
