@@ -5,3 +5,4 @@ class AssetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asset
         fields = ['id','asset_type', 'value', 'date','user_id']
+        depth = 1
