@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 from .models import userInfo
 from .serializers import userInfoSerializer
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -24,3 +25,20 @@ def userinformation(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['PUT', 'DELETE', 'PATCH'])
+@permission_classes([IsAuthenticated])
+def edit_user_info(request,pk):
+    user = get_object_or_404(userInfo,pk=pk)
+    if request.method == 'PUT':
+        serializer = userInfoSerializer(user, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    elif request.method == 'PATCH':
+        serializer = userInfoSerializer(user, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    elif request.method == 'DELETE':
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
