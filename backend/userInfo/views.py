@@ -14,7 +14,7 @@ def userinformation(request):
     print(
     'User ', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == 'GET':
-        user_info = userInfo.objects.all()
+        user_info = userInfo.objects.filter(user_id=request.user.id)
         serializer = userInfoSerializer(user_info, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
