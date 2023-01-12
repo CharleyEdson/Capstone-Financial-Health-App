@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
+import Navbar from "../../components/NavBar/NavBar";
+import { useNavigate, Link } from "react-router-dom";
+import './RegisterPage.css'
 
 const RegisterPage = () => {
   const { registerUser } = useContext(AuthContext);
@@ -17,7 +20,12 @@ const RegisterPage = () => {
   );
 
   return (
-    <div className="container">
+    <div className="background">
+      <div>
+        <Navbar />
+      </div>
+      {/* If i use className='Container', it centeres content. */}
+      <div >
       <form className="form" onSubmit={handleSubmit}>
         <label>
           Username:{" "}
@@ -70,7 +78,9 @@ const RegisterPage = () => {
         </p>
         <button>Register!</button>
       </form>
+      </div>
     </div>
+    
   );
 };
 
