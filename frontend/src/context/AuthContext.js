@@ -12,7 +12,9 @@ function setUserObject(user) {
     return null;
   }
   return {
+    username: user.username,
     id: user.user_id,
+    first_name: user.first_name,
   };
 }
 
@@ -28,8 +30,11 @@ export const AuthProvider = ({ children }) => {
   const registerUser = async (registerData) => {
     try {
       let finalData = {
+        username: registerData.username,
         password: registerData.password,
         email: registerData.email,
+        first_name: registerData.firstName,
+        last_name: registerData.lastName,
       };
       let response = await axios.post(`${BASE_URL}/register/`, finalData);
       if (response.status === 201) {

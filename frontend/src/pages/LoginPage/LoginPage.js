@@ -3,6 +3,8 @@ import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 import { Link } from "react-router-dom";
 import "./LoginPage.css";
+import Navbar from "../../components/NavBar/NavBar";
+import './LoginPage.css'
 
 
 const LoginPage = () => {
@@ -20,9 +22,14 @@ const LoginPage = () => {
   }, [isServerError]);
 
   return (
-    <div className="container">
+    <div className="background">
+      <div>
+        <Navbar />
+      </div>
+    <div >
+      {/* If i use className='Container', it centeres content. */}
       <form className="form" onSubmit={handleSubmit}>
-        <label>
+        <label className="titles">
           Username:{" "}
           <input
             type="text"
@@ -31,7 +38,7 @@ const LoginPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <label>
+        <label className="titles">
           Password:{" "}
           <input
             type="text"
@@ -43,9 +50,10 @@ const LoginPage = () => {
         {isServerError ? (
           <p className="error">Login failed, incorrect credentials!</p>
         ) : null}
-        <Link to="/register">Click to register!</Link>
-        <button>Login!</button>
+        <Link to="/register">Click to Create an Account</Link>
+        <button>Login</button>
       </form>
+    </div>
     </div>
   );
 };

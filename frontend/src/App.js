@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 // Pages Imports
-import HomePage from "./pages/CarHomePage/CarHomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import MainPage from "./pages/MainPage/MainPage";
@@ -20,14 +20,14 @@ function App() {
     <div>
       {/* <Navbar /> */}
       <Routes>
-        {/* <Route
-          path="/main"
+        <Route
+          path="/home"
           element={
             <PrivateRoute>
               <HomePage />
             </PrivateRoute>
           }
-        /> */}
+        />
 
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<RegisterPage />} />

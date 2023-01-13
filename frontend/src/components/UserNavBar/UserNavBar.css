@@ -1,0 +1,40 @@
+ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+  
+  li {
+    font-size: 1.25rem;
+  }
+  
+  .navBar {
+    background: white;
+    box-shadow: 4px 2px 5px gray;
+    color: white;
+    padding: 1.5rem 2rem;
+  }
+  
+  .navBar button {
+    background: transparent;
+    border: 2px solid rgb(95, 186, 214);
+    color: rgb(95, 186, 214);
+    padding: 0.4rem 0.5rem;
+  }
+  
+  .navBar button:hover {
+    background: white;
+    color: steelblue;
+    cursor: pointer;
+  }
+  
+  .brand {
+    cursor: pointer;
+    font-size: 2rem;
+    color: rgb(95, 186, 214);
+  }
+  
+  .name {
+    color: rgb(48,130,167);
+    margin: auto;
+  }

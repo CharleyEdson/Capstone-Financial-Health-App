@@ -17,6 +17,8 @@ class userInfo(models.Model):
     state_living_in = models.CharField(max_length=50)
     relationship_status = models.CharField(max_length=50)
     budget_value = models.IntegerField()
+    budget_timeframe = models.CharField(max_length=50)
+    verified_facts = models.BooleanField()
 
 
 

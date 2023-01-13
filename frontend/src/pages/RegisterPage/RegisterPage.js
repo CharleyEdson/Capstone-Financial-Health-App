@@ -27,6 +27,33 @@ const RegisterPage = () => {
       {/* If i use className='Container', it centeres content. */}
       <div >
       <form className="form" onSubmit={handleSubmit}>
+      <label className="titles">
+          Username:{" "}
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label className="titles">
+          First Name:{" "}
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label className="titles">
+          Last Name:{" "}
+          <input
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleInputChange}
+          />
+        </label>
         <label className="titles">
           Email:{" "}
           <input
