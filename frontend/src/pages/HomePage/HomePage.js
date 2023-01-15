@@ -8,7 +8,25 @@ import UserNavBar from "../../components/UserNavBar/UserNavBar";
 import FactFinder from "../../components/FactFinder/FactFinder";
 
 const HomePage = (props) => {
-  const [user, token] = useAuth();
+    const [user, token] = useAuth();
+    
+
+useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+        fetchUserInfo();
+    }
+    return () => (mounted = false);
+    }, [user]
+);
+
+
+ const fetchUserInfo = async () => {
+    try {
+        let response = await axios.get(`http://127.0.0.1:8000/api/userinfo/${id}/`)
+    }
+ };
+
   return (
     <div>
       <div>{<UserNavBar />}</div>
@@ -26,6 +44,7 @@ const HomePage = (props) => {
         <div>*insert Recommendations here</div>
         <br></br>
         <FactFinder />
+        {console.log(user.email)}
       </div>
 
       <div></div>

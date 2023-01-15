@@ -51,7 +51,7 @@ const FactFinder = (props) => {
       verified_facts: verified,
     };
     addUserInfo(newUserInfo);
-    console.log(newUserInfo.phoneNumber);
+    console.log(newUserInfo);
   }
 
   return (

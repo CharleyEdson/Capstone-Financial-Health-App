@@ -6,9 +6,6 @@ from authentication.models import User
 
 class userInfo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=50)
     age = models.IntegerField()
     gender = models.CharField(max_length=50)

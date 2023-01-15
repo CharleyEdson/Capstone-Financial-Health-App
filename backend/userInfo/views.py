@@ -25,6 +25,8 @@ def userinformation(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
+
 @api_view(['PUT', 'DELETE', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def edit_user_info(request,pk):
