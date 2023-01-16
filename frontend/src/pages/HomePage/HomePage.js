@@ -2,49 +2,97 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import "./HomePage.css";
-
+import { Link } from "react-router-dom";
 import axios from "axios";
 import UserNavBar from "../../components/UserNavBar/UserNavBar";
 import FactFinder from "../../components/FactFinder/FactFinder";
 
 const HomePage = (props) => {
-    const [user, token] = useAuth();
-    
+  const [user, token] = useAuth();
+  const [userInfo, setUserInfo] = useState([""]);
+  const [userAssets, setUserAssets] = useState([""]);
 
-useEffect(() => {
+  useEffect(() => {
     let mounted = true;
     if (mounted) {
-        fetchUserInfo();
+      fetchUserInfo();
+      fetchUserAssets();
     }
     return () => (mounted = false);
-    }, [user]
-);
+  }, [user]);
 
-
- const fetchUserInfo = async () => {
+  const fetchUserInfo = async () => {
     try {
-        let response = await axios.get(`http://127.0.0.1:8000/api/userinfo/${id}/`)
+      let response = await axios.get(`http://127.0.0.1:8000/api/userinfo/`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      setUserInfo(response["data"][0]);
+    } catch (error) {
+      console.log(error.response);
     }
- };
+  };
+
+  const fetchUserAssets = async () => {
+    try {
+      let response = await axios.get(`http://127.0.0.1:8000/api/assets/`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      
+      console.log(response["data"]);
+      setUserAssets(response["data"]);
+
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
   return (
     <div>
       <div>{<UserNavBar />}</div>
       <div className="background">
         <br></br>
-        <h2 className="welcome">Welcome Back, {user.first_name}</h2>
-        <br></br>
-        <h3 className="networth_cash">Net Worth </h3>
-        <div>*insert net worth chart here</div>
-        <br></br>
-        <h3 className="networth_cash">Net Cash Flow </h3>
-        <div>*insert net cash flow chart here</div>
-        <br></br>
-        <h3 className="networth_cash">Recommendations </h3>
-        <div>*insert Recommendations here</div>
-        <br></br>
-        <FactFinder />
-        {console.log(user.email)}
+        <div>
+          {userInfo ? (
+            <div>
+              <h2 className="welcome">Welcome Back, {user.first_name}</h2>
+              <br></br>
+              <h3 className="networth_cash">Net Worth </h3>
+              <div>
+                {console.log(userAssets)}
+                {userAssets[0] !== null ? (
+                  <div>
+                    User Assets Graph
+                    <Link to="/monthlyinfo">
+                      Add your Asset/Liability info here
+                    </Link>
+                    <div>
+                    {userAssets[0]['asset_type']} 
+                    {userAssets[0]['value']}
+                  </div>
+                  </div>
+                ) : (
+                  <Link to="/monthlyinfo">
+                    Add your Asset/Liability info here
+                  </Link>
+                )}
+              </div>
+              <br></br>
+              <h3 className="networth_cash">Net Cash Flow </h3>
+              <div>*insert net cash flow chart here</div>
+              <br></br>
+              <h3 className="networth_cash">Recommendations </h3>
+              <div>*insert Recommendations here</div>
+              <br></br>
+            </div>
+          ) : (
+            <FactFinder />
+          )}
+        </div>
       </div>
 
       <div></div>

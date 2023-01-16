@@ -36,7 +36,7 @@ const FactFinder = (props) => {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     let newUserInfo = {
       phone_number: phoneNumber,

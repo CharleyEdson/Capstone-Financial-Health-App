@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import MainPage from "./pages/MainPage/MainPage";
+import DataInputAL from "./pages/DataInputAL/DataInputAL";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -28,7 +29,14 @@ function App() {
             </PrivateRoute>
           }
         />
-
+        <Route
+          path="/monthlyinfo"
+          element={
+            <PrivateRoute>
+              <DataInputAL />
+            </PrivateRoute>
+          }
+        />
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
