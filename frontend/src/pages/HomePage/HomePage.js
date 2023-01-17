@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import UserNavBar from "../../components/UserNavBar/UserNavBar";
 import FactFinder from "../../components/FactFinder/FactFinder";
+import NetWorth from "../../components/NetWorth/NetWorth";
 
 const HomePage = (props) => {
   const [user, token] = useAuth();
@@ -20,6 +21,8 @@ const HomePage = (props) => {
     }
     return () => (mounted = false);
   }, [user]);
+
+
 
   const fetchUserInfo = async () => {
     try {
@@ -51,6 +54,9 @@ const HomePage = (props) => {
     }
   };
 
+
+
+
   return (
     <div>
       <div>{<UserNavBar />}</div>
@@ -63,8 +69,7 @@ const HomePage = (props) => {
               <br></br>
               <h3 className="networth_cash">Net Worth </h3>
               <div>
-                {console.log(userAssets)}
-                {userAssets[0] !== null ? (
+                {userAssets !== null ? (
                   <div>
                     User Assets Graph
                     <Link to="/monthlyinfo">
@@ -81,6 +86,7 @@ const HomePage = (props) => {
                   </Link>
                 )}
               </div>
+                    <NetWorth userAssets={userAssets} />
               <br></br>
               <h3 className="networth_cash">Net Cash Flow </h3>
               <div>*insert net cash flow chart here</div>
