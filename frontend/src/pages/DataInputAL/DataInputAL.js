@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import UserNavBar from "../../components/UserNavBar/UserNavBar";
 import InputAssets from "../../components/InputAssets/InputAssets";
+import InputLiabilities from "../../components/InputLiabilities/InputLiabilities";
 
 const DataInputAL = (props) => {
     const [user, token] = useAuth();
@@ -26,6 +27,9 @@ const DataInputAL = (props) => {
       <div className="background">
         <div>
             <InputAssets />
+        </div>
+        <div>
+            <InputLiabilities />
         </div>
         </div>
     </div>
