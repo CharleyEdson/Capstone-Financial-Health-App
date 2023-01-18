@@ -5,9 +5,19 @@ import useAuth from "../../hooks/useAuth";
 
 
 const NetWorth = ({userAssets}) => {
+    const [netWorth, setNetWorth] = useState(0)
+
     return ( 
         <div>
-            hello
+            
+            {userAssets && userAssets.reduce(function(netWorth, asset) {
+                return netWorth + asset.value
+            },0
+            )}
+            <div>
+           
+            </div>
+            {/* {userAssets && userAssets.map(asset => <div key={asset.id}>{asset.value}</div> )} */}
         </div>
      );
 }

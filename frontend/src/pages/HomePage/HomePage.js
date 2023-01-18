@@ -69,15 +69,13 @@ const HomePage = (props) => {
               <br></br>
               <h3 className="networth_cash">Net Worth </h3>
               <div>
-                {userAssets !== null ? (
+                {userAssets[0]['asset_type'] !== null ? (
                   <div>
-                    User Assets Graph
                     <Link to="/monthlyinfo">
-                      Add your Asset/Liability info here
+                      not null Add your Asset/Liability info here
+                      {/* {userAssets[2]['asset_type']} */}
                     </Link>
                     <div>
-                    {userAssets[0]['asset_type']} 
-                    {userAssets[0]['value']}
                   </div>
                   </div>
                 ) : (
