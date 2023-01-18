@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'Asset',
     'Liability',
     'Income',
-    'Expense'
+    'Expense',
+    'netWorth',
+    'budget'
 ]
 
 MIDDLEWARE = [
