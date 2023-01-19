@@ -10,9 +10,36 @@ from django.shortcuts import get_object_or_404
 from authentication.models import User
 from Asset.models import Asset
 from Liability.models import Liability
+from datetime import date
 
 
 # Create your views here.
+
+today = date.today()
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_net_worth(request):
+    net_worth = netWorth.objects.filter(user_id=request.user.id).order_by('-id')[:1]
+    serializer = netWorthSerializer(net_worth, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_historical_net_worth(request):
+    net_worth = netWorth.objects.filter(user_id=request.user.id).order_by('-date')
+    serializer = netWorthSerializer(net_worth, many=True)
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_net_worth(request,pk):
+    net_worth = get_object_or_404(netWorth,pk=pk)
+    net_worth.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+#When database get's large, slice the objects retried using [:1]
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def calculate_net_worth(request):
@@ -75,6 +102,9 @@ def calculate_net_worth(request):
         total_net_worth = total_assets - total_liabilities
         print(total_assets)
         print(total_liabilities)
-        new_net_worth = netWorth.objects.create(user=request.user, netWorth=total_net_worth, asset_total=total_assets, liabilities_total=total_liabilities, date='2023-01-01')
-        serializer = AssetSerializer(real_estate, many=True)
+        print(total_net_worth)
+        # return(Response(total_net_worth))
+        new_net_worth = netWorth.objects.create(user=request.user, netWorth=total_net_worth, asset_total=total_assets, liabilities_total=total_liabilities, date=today)
+        net_worth = netWorth.objects.filter(user_id=request.user.id)
+        serializer = netWorthSerializer(net_worth, many=True)
         return Response(serializer.data)

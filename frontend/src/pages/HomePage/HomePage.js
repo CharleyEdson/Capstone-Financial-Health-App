@@ -7,22 +7,23 @@ import axios from "axios";
 import UserNavBar from "../../components/UserNavBar/UserNavBar";
 import FactFinder from "../../components/FactFinder/FactFinder";
 import NetWorth from "../../components/NetWorth/NetWorth";
+import CashFlow from "../../components/CashFlow/CashFlow";
 
 const HomePage = (props) => {
   const [user, token] = useAuth();
   const [userInfo, setUserInfo] = useState([""]);
   const [userAssets, setUserAssets] = useState([""]);
+  const [netWorth, setNetWorth] = useState([""]);
 
   useEffect(() => {
     let mounted = true;
     if (mounted) {
       fetchUserInfo();
-      fetchUserAssets();
+    //   fetchUserAssets();
+      fetchNetWorth();
     }
     return () => (mounted = false);
   }, [user]);
-
-
 
   const fetchUserInfo = async () => {
     try {
@@ -45,17 +46,26 @@ const HomePage = (props) => {
           Authorization: "Bearer " + token,
         },
       });
-      
-      console.log(response["data"]);
-      setUserAssets(response["data"]);
+            setUserAssets(response["data"]);
 
     } catch (error) {
       console.log(error.response);
     }
   };
 
+  const fetchNetWorth = async () => {
+    try {
+      let response = await axios.get(`http://127.0.0.1:8000/api/networth/historicalnetworth/`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }).then(response=>setNetWorth(response["data"]));
 
-
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+console.log(netWorth)
 
   return (
     <div>
@@ -67,27 +77,9 @@ const HomePage = (props) => {
             <div>
               <h2 className="welcome">Welcome Back, {user.first_name}</h2>
               <br></br>
-              <h3 className="networth_cash">Net Worth </h3>
-              <div>
-                {userAssets[0]['asset_type'] !== null ? (
-                  <div>
-                    <Link to="/monthlyinfo">
-                      not null Add your Asset/Liability info here
-                      {/* {userAssets[2]['asset_type']} */}
-                    </Link>
-                    <div>
-                  </div>
-                  </div>
-                ) : (
-                  <Link to="/monthlyinfo">
-                    Add your Asset/Liability info here
-                  </Link>
-                )}
-              </div>
-                    <NetWorth userAssets={userAssets} />
+              <NetWorth networth={netWorth} />                  
               <br></br>
-              <h3 className="networth_cash">Net Cash Flow </h3>
-              <div>*insert net cash flow chart here</div>
+              <CashFlow />
               <br></br>
               <h3 className="networth_cash">Recommendations </h3>
               <div>*insert Recommendations here</div>

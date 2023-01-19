@@ -46,8 +46,6 @@ const FactFinder = (props) => {
       risk_level: riskAppetite,
       state_living_in: stateLivedIn,
       relationship_status: relationshipStatus,
-      budget_value: budget,
-      budget_timeframe: budgetTimeframe,
       verified_facts: verified,
     };
     addUserInfo(newUserInfo);
@@ -129,31 +127,6 @@ const FactFinder = (props) => {
           type="number"
           value={riskAppetite}
           onChange={(event) => setRiskAppetite(parseInt(event.target.value))}
-        ></input>
-        <div>
-          <label>
-            Do you want a weekly or monthly budget?
-            <div>
-              <select
-                value={budgetTimeframe}
-                onChange={(event) => setBudgetTimeframe(event.target.value)}
-              >
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
-              </select>
-            </div>
-          </label>
-        </div>
-        <div>
-          <label>
-            How much do you want to spend based on the time frame you picked
-            above? This can be changed later.
-          </label>
-        </div>
-        <input
-          type="number"
-          value={budget}
-          onChange={(event) => setBudget(parseInt(event.target.value))}
         ></input>
         <div>
           <label>
