@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'Income',
     'Expense',
     'netWorth',
-    'budget'
+    'budget',
+    'cashflow',
+    'currentincexp'
 ]
 
 MIDDLEWARE = [

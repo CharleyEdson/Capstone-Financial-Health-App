@@ -77,7 +77,7 @@ console.log(netWorth)
             <div>
               <h2 className="welcome">Welcome Back, {user.first_name}</h2>
               <br></br>
-              <NetWorth networth={netWorth} />                  
+              {/* <NetWorth networth={netWorth} />                   */}
               <br></br>
               <CashFlow />
               <br></br>

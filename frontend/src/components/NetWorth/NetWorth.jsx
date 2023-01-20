@@ -12,18 +12,9 @@ const NetWorth = ({networth=[{
     user_id: 2
 }]}) => {
     const [user, token] = useAuth();
-    useEffect(() => {
-        let mounted = true;
-        if (mounted) {
-
-        }
-        return () => (mounted = false);
-      }, [user]);
-    
 
     const options = {
         title: "Net Worth",
-        curveType: "function",
         legend: 'none',
         is3d: true,
         lineWidth: 1,
@@ -36,7 +27,7 @@ const NetWorth = ({networth=[{
 
     ];
     let changeInNetWorth = networth[0]['netWorth'] - networth[1]['netWorth']
-    data = data.concat(networth.map(el => Object.values(el).splice(0,2)))
+    data = data.concat(networth.map(el => Object.values(el).splice(0,2)).reverse())
     // console.log(networth)
     return ( 
         <div>

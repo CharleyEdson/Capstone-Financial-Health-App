@@ -7,6 +7,9 @@ import { Chart } from "react-google-charts";
 
 
 const CashFlow = (props) => {
+    const [user, token] = useAuth();
+
+    
     return ( 
         <div>
               <h3 className="networth_cash">Net Cash Flow </h3>
