@@ -5,12 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import { Chart } from "react-google-charts";
 
-const NetWorth = ({networth=[{
-    id: 1,
-    netWorth: 2260000,
-    date: "2023-01-01",
-    user_id: 2
-}]}) => {
+const NetWorth = ({networth}) => {
     const [user, token] = useAuth();
 
     const options = {

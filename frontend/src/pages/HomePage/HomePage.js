@@ -14,16 +14,18 @@ const HomePage = (props) => {
   const [userInfo, setUserInfo] = useState([""]);
   const [userAssets, setUserAssets] = useState([""]);
   const [netWorth, setNetWorth] = useState([""]);
+  const [cashFlow, setcashFlow] = useState([""]);
+
 
   useEffect(() => {
-    let mounted = true;
-    if (mounted) {
+    
       fetchUserInfo();
+
     //   fetchUserAssets();
       fetchNetWorth();
     }
-    return () => (mounted = false);
-  }, [user]);
+
+  , []);
 
   const fetchUserInfo = async () => {
     try {
@@ -46,8 +48,7 @@ const HomePage = (props) => {
           Authorization: "Bearer " + token,
         },
       });
-            setUserAssets(response["data"]);
-
+      setUserAssets(response["data"]);
     } catch (error) {
       console.log(error.response);
     }
@@ -55,17 +56,33 @@ const HomePage = (props) => {
 
   const fetchNetWorth = async () => {
     try {
-      let response = await axios.get(`http://127.0.0.1:8000/api/networth/historicalnetworth/`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }).then(response=>setNetWorth(response["data"]));
-
+      let response = await axios.get(
+        `http://127.0.0.1:8000/api/networth/historicalnetworth/`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      setNetWorth(response["data"]);
     } catch (error) {
       console.log(error.response);
     }
   };
-console.log(netWorth)
+
+  const fetchCashFlow = async () => {
+    try {
+      let response = await axios
+        .get("http://127.0.0.1:8000/api/cashflow/historicalnetcashflow/", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((response) => setcashFlow(response["data"]));
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
   return (
     <div>
@@ -77,7 +94,8 @@ console.log(netWorth)
             <div>
               <h2 className="welcome">Welcome Back, {user.first_name}</h2>
               <br></br>
-              {/* <NetWorth networth={netWorth} />                   */}
+              {netWorth.length > 0 ? <div>test</div> : <div>bonjour</div>}
+
               <br></br>
               <CashFlow />
               <br></br>
