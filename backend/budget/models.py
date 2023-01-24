@@ -5,4 +5,5 @@ from authentication.models import User
 class Budget(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     budget_value = models.IntegerField()
+    date = models.DateField()
     

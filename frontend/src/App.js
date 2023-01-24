@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import MainPage from "./pages/MainPage/MainPage";
 import DataInputAL from "./pages/DataInputAL/DataInputAL";
+import Budget from "./pages/Budget/Budget";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -34,6 +35,14 @@ function App() {
           element={
             <PrivateRoute>
               <DataInputAL />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/budget"
+          element={
+            <PrivateRoute>
+              <Budget />
             </PrivateRoute>
           }
         />

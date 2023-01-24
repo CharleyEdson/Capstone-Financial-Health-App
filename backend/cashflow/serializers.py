@@ -4,5 +4,5 @@ from .models import Cashflow
 class CashflowSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cashflow
-        fields = ['net_cash_flow','year', 'month', 'date', 'id','user_id']
+        fields = ['year','date', 'month','net_cash_flow', 'id','user_id']
         depth = 1

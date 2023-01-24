@@ -16,17 +16,6 @@ const HomePage = (props) => {
   const [netWorth, setNetWorth] = useState([""]);
   const [cashFlow, setcashFlow] = useState([""]);
 
-
-  useEffect(() => {
-    
-      fetchUserInfo();
-
-    //   fetchUserAssets();
-      fetchNetWorth();
-    }
-
-  , []);
-
   const fetchUserInfo = async () => {
     try {
       let response = await axios.get(`http://127.0.0.1:8000/api/userinfo/`, {
@@ -54,38 +43,8 @@ const HomePage = (props) => {
     }
   };
 
-  const fetchNetWorth = async () => {
-    try {
-      let response = await axios.get(
-        `http://127.0.0.1:8000/api/networth/historicalnetworth/`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      setNetWorth(response["data"]);
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-
-  const fetchCashFlow = async () => {
-    try {
-      let response = await axios
-        .get("http://127.0.0.1:8000/api/cashflow/historicalnetcashflow/", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-        .then((response) => setcashFlow(response["data"]));
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-
   return (
-    <div>
+    <>
       <div>{<UserNavBar />}</div>
       <div className="background">
         <br></br>
@@ -94,8 +53,7 @@ const HomePage = (props) => {
             <div>
               <h2 className="welcome">Welcome Back, {user.first_name}</h2>
               <br></br>
-              {netWorth.length > 0 ? <div>test</div> : <div>bonjour</div>}
-
+              {<NetWorth />}
               <br></br>
               <CashFlow />
               <br></br>
@@ -110,7 +68,7 @@ const HomePage = (props) => {
       </div>
 
       <div></div>
-    </div>
+    </>
   );
 };
 
