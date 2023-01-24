@@ -14,7 +14,7 @@ def budget_info(request):
     print(
     'User ', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == 'GET':
-        budgets = Budget.objects.filter(user_id=request.user.id)
+        budgets = Budget.objects.filter(user_id=request.user.id).order_by('-id')
         serializer = budgetSerializer(budgets, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
@@ -23,6 +23,14 @@ def budget_info(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def current_budget_info(request):
+    if request.method == 'GET':
+        budgets = Budget.objects.filter(user_id=request.user.id).order_by('-date')[:1]
+        serializer = budgetSerializer(budgets, many=True)
+        return Response(serializer.data)
 
 @api_view(['PUT', 'DELETE', 'PATCH'])
 @permission_classes([IsAuthenticated])
