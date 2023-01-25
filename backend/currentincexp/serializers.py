@@ -4,5 +4,5 @@ from .models import Currentincexp
 class CurrentincexpflowSerializer(serializers.ModelSerializer):
     class Meta:
         model = Currentincexp
-        fields = ['current_income','current_expense', 'year', 'month', 'date','id','user_id']
+        fields = ['current_income', 'id','year', 'date','user_id','month','current_expense']
         depth = 1

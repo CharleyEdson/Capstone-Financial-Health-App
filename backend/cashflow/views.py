@@ -28,7 +28,8 @@ def get_historical_net_cash_flow(request):
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
-def delete_net_cash_flow(request,pk):
-    cash_flow = get_object_or_404(Cashflow,pk=pk)
-    cash_flow.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+def delete_net_cash_flow(request, pk):
+    if request.method == 'DELETE':
+        cash_flow = get_object_or_404(Cashflow,pk=pk)
+        cash_flow.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

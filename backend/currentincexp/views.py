@@ -45,3 +45,5 @@ def calculate_cash_flow(request):
     cash_flow = Cashflow.objects.filter(user_id=request.user.id)
     serializer = CashflowSerializer(cash_flow, many=True)
     return Response(serializer.data)
+
+

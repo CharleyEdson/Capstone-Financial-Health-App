@@ -6,20 +6,41 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import UserNavBar from "../../components/UserNavBar/UserNavBar";
 import { Slider, Box } from "@material-ui/core";
-import {chart} from "react-google-charts"
+import { Chart } from "react-google-charts";
 
 const Budget = (props) => {
   const [user, token] = useAuth();
   const [currentBudget, setCurrentBudget] = useState([
     { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
   ]);
-  const [Budgets, setBudgets] = useState([
+  const [budgets, setBudgets] = useState([
     { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
   ]);
   const [value, setValue] = useState(20);
+  const [expenses, setExpenses] = useState([
+    {
+      current_income: 11000,
+      date: "2023-02-01",
+      id: 3,
+      current_expense: 8000,
+      month: "February",
+      user_id: 2,
+      year: "2023",
+    },
+    {
+      current_expense: 8000,
+      current_income: 11000,
+      date: "2023-02-01",
+      id: 3,
+      month: "February",
+      user_id: 2,
+      year: "2023",
+    },
+  ]);
 
   useEffect(() => {
     fetchUserBudget();
+    fetchUserExpenses();
   }, []);
 
   function formatDate() {
@@ -40,16 +61,30 @@ const Budget = (props) => {
 
   const fetchUserBudget = async () => {
     try {
+      let response = await axios.get(`http://127.0.0.1:8000/api/budget/`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      setCurrentBudget(response["data"][0]);
+      setBudgets(response["data"]);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  const fetchUserExpenses = async () => {
+    try {
       let response = await axios.get(
-        `http://127.0.0.1:8000/api/budget/`,
+        `http://127.0.0.1:8000/api/currentincexp/historicalcurrents/`,
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
       );
-      setCurrentBudget(response["data"][0]);
-      setBudgets(response["data"])
+      console.log(response["data"]);
+      setExpenses(response["data"]);
     } catch (error) {
       console.log(error.response);
     }
@@ -85,6 +120,21 @@ const Budget = (props) => {
   }
 
   const getText = (value) => `${value}`;
+
+  const options = {
+    chart: {
+      title: "Budget",
+      subtitle: "Months",
+      legend: 'none',
+    },
+  };
+
+  let headers = [["Month", "Over/Under Budget"],];
+  let data = expenses.map((el) => Object.values(el).splice(5, 6))
+  let calcbudget = data.map((el) => [el[0],el[1]-currentBudget.budget_value]).reverse()
+  let final_data = headers.concat(calcbudget)
+  console.log(final_data)
+
   return (
     <div>
       <div>{<UserNavBar />}</div>
@@ -129,8 +179,16 @@ const Budget = (props) => {
         {/* This ends the modal pop up */}
         <br></br>
         <div>
-
-            <h3>Over/Under Budget</h3>
+          <h3>Over/Under Budget</h3>
+          <div>
+          <Chart
+        chartType="Bar"
+        width="80%"
+        height="400px"
+        data={final_data}
+        options={options}
+        />
+            </div>
         </div>
       </div>
     </div>
