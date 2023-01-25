@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import MainPage from "./pages/MainPage/MainPage";
 import DataInputAL from "./pages/DataInputAL/DataInputAL";
 import Budget from "./pages/Budget/Budget";
+import EditPage from "./pages/EditPage/EditPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -43,6 +44,14 @@ function App() {
           element={
             <PrivateRoute>
               <Budget />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/edit"
+          element={
+            <PrivateRoute>
+              <EditPage />
             </PrivateRoute>
           }
         />

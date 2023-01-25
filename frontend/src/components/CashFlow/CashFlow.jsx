@@ -8,7 +8,6 @@ import UpdateBudgetModal from "../UpdateBudgetModal/UpdateBudgetModal";
 
 const CashFlow = () => {
   const [user, token] = useAuth();
-  const [showModal, setShowModal] = useState(false)
   const [cashFlow, setCashFlow] = useState([
     {
       date: "2023-01-19",
