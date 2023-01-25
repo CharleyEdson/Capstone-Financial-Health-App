@@ -4,9 +4,11 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import { Chart } from "react-google-charts";
+import UpdateBudgetModal from "../UpdateBudgetModal/UpdateBudgetModal";
 
 const CashFlow = () => {
   const [user, token] = useAuth();
+  const [showModal, setShowModal] = useState(false)
   const [cashFlow, setCashFlow] = useState([
     {
       date: "2023-01-19",
