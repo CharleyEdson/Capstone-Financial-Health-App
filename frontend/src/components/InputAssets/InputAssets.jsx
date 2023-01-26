@@ -31,13 +31,11 @@ const InputAssets = (props) => {
       value: value,
       date: date,
     };
-    console.log(userAssets);
     addUserAssets(userAssets);
   }
 
   return (
     <div>
-      <p> Please input your Assets</p>
       <br></br>
       <ul>For Cash accounts: Think bank accounts, CD's, etc</ul>
       <ul>For Brokerage accounts: Think of any non-retirement investment accounts that you have, ie-robinhood, crypto, etc.</ul>

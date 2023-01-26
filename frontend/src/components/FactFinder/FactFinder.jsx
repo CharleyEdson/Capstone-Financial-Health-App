@@ -15,8 +15,6 @@ const FactFinder = (props) => {
   const [stateLivedIn, setStateLivedIn] = useState("");
   const [relationshipStatus, setRelationshipStatus] = useState("");
   const [riskAppetite, setRiskAppetite] = useState(0);
-  const [budget, setBudget] = useState(0);
-  const [budgetTimeframe, setBudgetTimeframe] = useState("");
   const [verified, setVerified] = useState(false);
   const [user, token] = useAuth();
 

@@ -12,6 +12,11 @@ from cashflow.serializers import CashflowSerializer
 
 # Create your views here.
 today = date.today()
+month = today.month - 1
+if month == 0:
+    month = 12
+
+
 print(today)
 
 @api_view(['GET'])
@@ -46,4 +51,22 @@ def calculate_cash_flow(request):
     serializer = CashflowSerializer(cash_flow, many=True)
     return Response(serializer.data)
 
+
+@api_view(['PUT', 'DELETE', 'PATCH'])
+@permission_classes([IsAuthenticated])
+def edit_currents(request,pk):
+    current = get_object_or_404(Currentincexp,pk=pk)
+    if request.method == 'PUT':
+        serializer = CurrentincexpflowSerializer(current, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    elif request.method == 'PATCH':
+        serializer = CurrentincexpflowSerializer(current, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    elif request.method == 'DELETE':
+        current.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 

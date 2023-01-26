@@ -37,8 +37,7 @@ const InputLiabilities = (props) => {
   }
 
   return (
-    <div>
-        <p> Please input your Liabilities</p>    
+    <div>   
       <br></br>
       <form onSubmit={handleSubmit}>
         <div>

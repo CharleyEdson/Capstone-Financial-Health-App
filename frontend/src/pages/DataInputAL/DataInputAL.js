@@ -26,9 +26,11 @@ const DataInputAL = (props) => {
       <div>{<UserNavBar />}</div>
       <div className="background">
         <div>
+            <p>Please input your Assets</p>
             <InputAssets />
         </div>
         <div>
+        <p>Please input your Liabilities</p>
             <InputLiabilities />
         </div>
         </div>
