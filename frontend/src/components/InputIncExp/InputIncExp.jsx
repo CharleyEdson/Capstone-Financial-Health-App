@@ -1,15 +1,21 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const InputIncExp = ({currentMonth, currentYear, currentDate}) => {
+const InputIncExp = ({currentDate}) => {
   const [user, token] = useAuth();
   const [monthlyIncome, setMonthlyIncome] = useState(0);
   const [monthlyExpense, setMonthlyExpense] = useState(0);
-  const [year, setYear] = useState(currentYear);
-  const [month, setMonth] = useState(currentMonth);
+//   const [year, setYear] = useState("");
+//   const [month, setMonth] = useState("");
   const [date, setDate] = useState(currentDate);
+ 
+  useEffect(() => {
+    formatMonth();
+    formatYear();
+  }, []);
+
 
   async function postIncExp(currents) {
     const response = await axios.post(
@@ -26,6 +32,48 @@ const InputIncExp = ({currentMonth, currentYear, currentDate}) => {
     }
   }
 
+  function formatMonth() {
+    var d = new Date();
+    var month = d.getMonth();
+    if (month === 0) {
+        month = 12
+    }
+    if (month < 10) {
+      month = "0" + month;
+    }
+    var monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      console.log(monthNames[month-1])
+      return(monthNames[month-1])
+  }
+  
+  let month = formatMonth();
+
+  function formatYear() {
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    if (month === 0) {
+        year = year -1 
+    }
+    console.log(year)
+    return year
+  }
+
+  let year = formatYear();
+
   function handleSubmit(event) {
     event.preventDefault();
     let currents = {
@@ -40,7 +88,7 @@ const InputIncExp = ({currentMonth, currentYear, currentDate}) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div>
           <label>
             Please enter your total Income/cash flow for the previous month:

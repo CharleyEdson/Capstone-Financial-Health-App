@@ -26,6 +26,8 @@ const MonthlyInfo = (props) => {
       year: "2023",
     },
   ]);
+  const [info, setInfo] = useState(false);
+
   useEffect(() => {
     fetchUserExpenses();
   }, []);
@@ -33,11 +35,15 @@ const MonthlyInfo = (props) => {
   function formatMonth() {
     var d = new Date();
     var year = d.getFullYear();
-    var month = d.getMonth() + 1;
+    var month = d.getMonth();
     var day = d.getDate();
+    if (month === 0) {
+        month = 12
+    }
     if (month < 10) {
       month = "0" + month;
     }
+
     if (day < 10) {
       day = "0" + day;
     }
@@ -58,7 +64,7 @@ const MonthlyInfo = (props) => {
       "November",
       "December",
     ];
-    return monthNames[month - 1];
+    return monthNames[month-1];
   }
 
   let currentMonth = getMonthName(formatMonth());
@@ -105,19 +111,41 @@ const MonthlyInfo = (props) => {
           },
         }
       );
-      setHistoricIncExp(response["data"]);
+      if (response.data.length === 0) {
+        console.log("its blank!");
+        setInfo(true);
+      } else {
+        setHistoricIncExp(response["data"]);
+        console.log("This should have ran if there was data!");
+      }
     } catch (error) {
       console.log(error.response);
+      console.log(historicincexp);
     }
   };
 
+  console.log(historicincexp[0]);
+
   return (
     <div>
+      {info === true ? (
+        <div>
+            <p>You need to enter your first month's Income and Expense!</p>
+        {/* This is where I put the InputIncExp component */}
+        </div>
+      ) : (
+        <div></div>
+      )}
+
+      {console.log(historicincexp[0]["month"])}
       {historicincexp[0]["month"] === currentMonth ? (
         <div>Please wait until next month to update</div>
       ) : (
         <div>
-          <InputIncExp currentYear={currentYear} currentMonth={currentMonth} currentDate={date} />
+          <InputIncExp
+            currentYear={currentYear}
+            currentDate={date}
+          />
         </div>
       )}
     </div>
