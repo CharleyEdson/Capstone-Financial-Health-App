@@ -3,19 +3,18 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const InputIncExp = ({currentDate}) => {
+const InputIncExp = ({ currentDate }) => {
   const [user, token] = useAuth();
   const [monthlyIncome, setMonthlyIncome] = useState(0);
   const [monthlyExpense, setMonthlyExpense] = useState(0);
-//   const [year, setYear] = useState("");
-//   const [month, setMonth] = useState("");
+  //   const [year, setYear] = useState("");
+  //   const [month, setMonth] = useState("");
   const [date, setDate] = useState(currentDate);
- 
+
   useEffect(() => {
     formatMonth();
     formatYear();
   }, []);
-
 
   async function postIncExp(currents) {
     const response = await axios.post(
@@ -32,49 +31,56 @@ const InputIncExp = ({currentDate}) => {
     }
   }
 
+  async function calculateCashFlow() {
+    const response = await axios.get(
+      "http://127.0.0.1:8000/api/currentincexp/",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+  }
+
   function formatMonth() {
     var d = new Date();
     var month = d.getMonth();
     if (month === 0) {
-        month = 12
+      month = 12;
     }
     if (month < 10) {
       month = "0" + month;
     }
     var monthNames = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ];
-      console.log(monthNames[month-1])
-      return(monthNames[month-1])
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return monthNames[month - 1];
   }
-  
   let month = formatMonth();
-
   function formatYear() {
     var d = new Date();
     var year = d.getFullYear();
     var month = d.getMonth();
     if (month === 0) {
-        year = year -1 
+      year = year - 1;
     }
-    console.log(year)
-    return year
+    return year;
   }
 
   let year = formatYear();
 
-  function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     let currents = {
       current_income: monthlyIncome,
@@ -83,32 +89,38 @@ const InputIncExp = ({currentDate}) => {
       month: month,
       date: date,
     };
-    postIncExp(currents);
-  }
+    await postIncExp(currents).then((response) => calculateCashFlow());
+  };
 
   return (
     <div>
-      <form onSubmit={handleSubmit} >
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
         <div>
           <label>
             Please enter your total Income/cash flow for the previous month:
           </label>
         </div>
-        <input type="number"
-        value={monthlyIncome}
-        onChange={(event) => setMonthlyIncome(event.target.value)}>
-        </input>
+        <input
+          type="number"
+          value={monthlyIncome}
+          onChange={(event) => setMonthlyIncome(event.target.value)}
+        ></input>
         <div>
           <label>
             Please enter your total Expenses for the previous month:
           </label>
         </div>
-        <input type="number"
-        value={monthlyExpense}
-        onChange={(event) => setMonthlyExpense(event.target.value)}>
-        </input>
+        <input
+          type="number"
+          value={monthlyExpense}
+          onChange={(event) => setMonthlyExpense(event.target.value)}
+        ></input>
         <div>
-            <button type="submit">Submit</button>
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>

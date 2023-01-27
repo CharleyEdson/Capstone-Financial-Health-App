@@ -46,7 +46,13 @@ def calculate_cash_flow(request):
         current.append(obj.current_income)
         current.append(obj.current_expense)
     net_cash_flow = current[0]-current[1]
-    new_net_cash_flow = Cashflow.objects.create(user=request.user,net_cash_flow=net_cash_flow, year=today.year, month=today.month, date=today)
+    today = date.today()
+    month = today.month - 1
+    year = today.year
+    if month == 0:
+        month = 12
+        year = year - 1
+    new_net_cash_flow = Cashflow.objects.create(user=request.user,net_cash_flow=net_cash_flow, year=year, month=month, date=today)
     cash_flow = Cashflow.objects.filter(user_id=request.user.id)
     serializer = CashflowSerializer(cash_flow, many=True)
     return Response(serializer.data)

@@ -38,7 +38,7 @@ const MonthlyInfo = (props) => {
     var month = d.getMonth();
     var day = d.getDate();
     if (month === 0) {
-        month = 12
+      month = 12;
     }
     if (month < 10) {
       month = "0" + month;
@@ -64,7 +64,7 @@ const MonthlyInfo = (props) => {
       "November",
       "December",
     ];
-    return monthNames[month-1];
+    return monthNames[month - 1];
   }
 
   let currentMonth = getMonthName(formatMonth());
@@ -130,8 +130,8 @@ const MonthlyInfo = (props) => {
     <div>
       {info === true ? (
         <div>
-            <p>You need to enter your first month's Income and Expense!</p>
-        {/* This is where I put the InputIncExp component */}
+          <p>You need to enter your first month's Income and Expense!</p>
+          {/* This is where I put the InputIncExp component */}
         </div>
       ) : (
         <div></div>
@@ -142,10 +142,7 @@ const MonthlyInfo = (props) => {
         <div>Please wait until next month to update</div>
       ) : (
         <div>
-          <InputIncExp
-            currentYear={currentYear}
-            currentDate={date}
-          />
+          <InputIncExp currentYear={currentYear} currentDate={date} />
         </div>
       )}
     </div>
