@@ -24,15 +24,29 @@ const InputAssets = (props) => {
     }
   }
 
-  function handleSubmit(event) {
+  async function updateNetWorth() {
+    const response = await axios.get(
+      "http://127.0.0.1:8000/api/networth/onceaday/",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+  }
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
     let userAssets = {
       asset_type: assetType,
       value: value,
       date: date,
     };
-    addUserAssets(userAssets);
-  }
+    await addUserAssets(userAssets).then(response => updateNetWorth());
+  };
+
+
+
 
   return (
     <div>
@@ -43,7 +57,7 @@ const InputAssets = (props) => {
       <ul>For Real Estate: Think of any homes, or rental properties</ul>
       <ul>For Misc: Think of any other asset you have that keeps it's value.</ul>
       <br></br>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => {handleSubmit(e)}}>
         <div>
           <div>
             <label>
@@ -51,8 +65,7 @@ const InputAssets = (props) => {
               <div>
                 <select
                   value={assetType}
-                  onChange={(event) => setAssetType(event.target.value)}
-                >
+                  onChange={(event) => setAssetType(event.target.value)}>
                   <option value="Cash">Cash Accounts</option>
                   <option value="Real Estate">Real Estate</option>
                   <option value="Brokerage">Brokerage Accounts</option>

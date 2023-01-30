@@ -89,16 +89,13 @@ const InputIncExp = ({ currentDate }) => {
       month: month,
       date: date,
     };
-    await postIncExp(currents).then((response) => calculateCashFlow());
+    await postIncExp(currents).then(response => calculateCashFlow());
   };
 
   return (
     <div>
       <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
+        onSubmit={(e) => {handleSubmit(e)}}>
         <div>
           <label>
             Please enter your total Income/cash flow for the previous month:

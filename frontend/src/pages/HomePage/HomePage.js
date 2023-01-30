@@ -8,6 +8,7 @@ import UserNavBar from "../../components/UserNavBar/UserNavBar";
 import FactFinder from "../../components/FactFinder/FactFinder";
 import NetWorth from "../../components/NetWorth/NetWorth";
 import CashFlow from "../../components/CashFlow/CashFlow";
+import Recommendations from "../../components/Recommendations/Recommendations";
 
 const HomePage = (props) => {
   const [user, token] = useAuth();
@@ -58,7 +59,7 @@ const HomePage = (props) => {
               <CashFlow />
               <br></br>
               <h3 className="networth_cash">Recommendations </h3>
-              <div>*insert Recommendations here</div>
+              <Recommendations />
               <br></br>
             </div>
           ) : (

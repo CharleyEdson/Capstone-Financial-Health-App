@@ -8,8 +8,9 @@ import UserNavBar from "../../components/UserNavBar/UserNavBar";
 import InputAssets from "../../components/InputAssets/InputAssets";
 import InputLiabilities from "../../components/InputLiabilities/InputLiabilities";
 import Budget from "../Budget/Budget";
-import FactFinder from "../../components/FactFinder/FactFinder";
+import FactFinderUpdate from "../../components/FactFinder/FactFinderUpdate";
 import MonthlyInfo from "../../components/MonthlyInfo/MonthlyInfo";
+import ProjectedIncome from "../../components/ProjectedIncome/ProjectedIncome";
 
 const EditPage = (props) => {
 
@@ -18,6 +19,31 @@ const EditPage = (props) => {
   const [assetsLiabilities, setAssetsLiabilities] = useState(false);
   const [updateBudget, setUpdateBudget] = useState(false);
   const [userInfo, setUserInfo] = useState(false);
+  const [projectedIncome, setProjectedIncome] = useState(false)
+  const [user, token] = useAuth();
+
+  const [userInfoObject, setUserInfoObject] = useState({});
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
+
+  async function fetchUserInfo() {
+    try {
+        let response = await axios.get(
+            "http://127.0.0.1:8000/api/userinfo/",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        setUserInfoObject(response["data"][0]);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
 
 function handleEditButtons() {
     setEditButons(true);
@@ -25,6 +51,7 @@ function handleEditButtons() {
     setAssetsLiabilities(false);
     setUpdateBudget(false);
     setUserInfo(false);
+    setProjectedIncome(false);
 } 
 function handleMonthlyInfoSubmit() {
     setEditButons(false);
@@ -54,6 +81,14 @@ function handleUserInfoSubmit() {
     setUpdateBudget(false);
     setUserInfo(true);
 } 
+function handleProjectedIncomeSubmit() {
+    setEditButons(false);
+    setMonthlyInfo(false);
+    setAssetsLiabilities(false);
+    setUpdateBudget(false);
+    setUserInfo(false);
+    setProjectedIncome(true);
+} 
 
 
   return (
@@ -69,6 +104,7 @@ function handleUserInfoSubmit() {
               <button onClick={handleALSubmit}>Update or Add Assets & Liabilities</button>
               <button onClick={handleBudgetSubmit}>Budget</button>
               <button onClick={handleUserInfoSubmit}>User Info</button>
+              <button onClick={handleProjectedIncomeSubmit}>Projected Income</button>
             </div>
           </div>
         ) : (
@@ -108,12 +144,21 @@ function handleUserInfoSubmit() {
           <>
           </>
         )}
-        {/*  Make userInfo a new component and only make it a patch/put request. 
-        Don't let them create a brand new one.*/}
         {userInfo === true ? (
           <div>
             <h1>Please Update your user Info </h1>
-            <FactFinder />
+            <FactFinderUpdate userInfo={userInfoObject} />
+            <button onClick={handleEditButtons}>Complete</button>
+            <br></br>
+          </div>
+        ) : (
+          <>
+          </>
+        )}
+        {projectedIncome === true ? (
+          <div>
+            <h1>What is your Projected Income for the year? </h1>
+            <ProjectedIncome />
             <button onClick={handleEditButtons}>Complete</button>
             <br></br>
           </div>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const InputLiabilities = (props) => {
+const InputLiabilities = () => {
   const [type_of_liability, setType_of_liability] = useState("Mortgage");
   const [value, setValue] = useState("");
   const [monthlyPayment, setMonthlyPayment] = useState("");
@@ -24,8 +24,18 @@ const InputLiabilities = (props) => {
       console.log("user liabilities posted.");
     }
   }
+  async function updateNetWorth() {
+    const response = await axios.get(
+      "http://127.0.0.1:8000/api/networth/onceaday/",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+  }
 
-  function handleSubmit(event) {
+  const handleSubmit = async (event)=> {
     event.preventDefault();
     let userLiabilities = {
       type_of_liability: type_of_liability,
@@ -33,13 +43,15 @@ const InputLiabilities = (props) => {
       monthly_payment: monthlyPayment,
       date: date,
     };
-    addUserLiabilities(userLiabilities);
+    await addUserLiabilities(userLiabilities).then(response =>updateNetWorth());
   }
 
   return (
     <div>   
       <br></br>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => {
+          handleSubmit(e);
+        }}>
         <div>
           <div>
             <label>
