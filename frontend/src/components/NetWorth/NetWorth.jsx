@@ -4,6 +4,7 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import { Chart } from "react-google-charts";
+import "./NetWorth.css";
 
 const NetWorth = () => {
   const [user, token] = useAuth();
@@ -21,7 +22,20 @@ const NetWorth = () => {
     legend: "none",
     is3d: true,
     lineWidth: 1,
-    corsshair: { trigger: "focus" },
+    curveType: 'function',
+    colors:['darkblue'],
+    crosshair: { trigger: "focus" },
+    chartArea: {
+      backgroundColor: {
+        fill: 'rgb(48, 130, 167)',
+        fillOpacity: 0.1
+      },
+    },
+    backgroundColor: {
+      fill: 'rgb(48, 130, 167)',
+      fillOpacity: 0.1
+    },
+    
   };
   const fetchNetWorth = async () => {
     try {
@@ -45,22 +59,24 @@ const NetWorth = () => {
     netWorth.map((el) => Object.values(el).splice(0, 2)).reverse()
   );
   return (
-    <div>
-      <div>
-        <h3 className="networth_cash">
-          Net Worth ${netWorth[0]["netWorth"]} ({changeInNetWorth})
-        </h3>
-        <div>
+    <>
+      <div className="networthcontainer">
+        <div className="nameheaders">
+        <p className="networth_cash">
+          Net Worth ${netWorth[0]["netWorth"]}</p><p> </p><p className={changeInNetWorth >0 ? "up" : "down"}> (${changeInNetWorth})</p>
+          </div>
+        <div className="border">
           <Chart
             chartType="LineChart"
-            width="80%"
+            width="100%"
             height="200px"
             data={data}
             options={options}
+  
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

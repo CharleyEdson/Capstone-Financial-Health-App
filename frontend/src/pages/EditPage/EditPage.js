@@ -93,11 +93,13 @@ function handleProjectedIncomeSubmit() {
 
   return (
     <>
-      <div>{<UserNavBar />}</div>
+      <UserNavBar />
+      <br></br>
       <div className="background">
+        <br></br>
         {editButtons === true ? (
             <div>
-            <div class="buttons">
+            <div className="buttons">
               <button onClick={handleMonthlyInfoSubmit}>
                 Input Monthly Info
               </button>

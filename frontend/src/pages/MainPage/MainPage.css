@@ -7,4 +7,15 @@
 .signup {
     background-color: rgb(121, 189, 210);
     color: white;
+    border-radius: 10px;
 }
+
+.contentcontainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+

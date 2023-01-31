@@ -1,0 +1,25 @@
+.header {
+    color: black;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 100rem) {
+
+    .recommendationscontainer {
+        width: 80vh;
+        background-color: rgb(137, 209, 230);
+
+
+    }
+    }
+
+.income {
+    font-style: italic;
+    color: grey;
+}
+
+.recs {
+    font-family: 'Times New Roman', Times, serif;
+}

@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import { Chart } from "react-google-charts";
 import UpdateBudgetModal from "../UpdateBudgetModal/UpdateBudgetModal";
+import './CashFlow.css'
 
 const CashFlow = () => {
   const [user, token] = useAuth();
@@ -38,29 +39,48 @@ const CashFlow = () => {
       console.log(error.response);
     }
   };
-
+// https://developers.google.com/chart/interactive/docs/gallery/linechart
+// to style charts
   const options = {
-    chart: {
-      title: "Cash Flow",
-      subtitle: "Months are by numbers",
-      legend: 'none',
+    title: "Cash Flow",
+    legend: "none",
+    is3d: true,
+    lineWidth: 1,
+    corsshair: { trigger: "focus" },
+    chartArea: {
+      backgroundColor: {
+        fill: 'rgb(48, 130, 167)',
+        fillOpacity: 0.1
+      },
     },
+    backgroundColor: {
+      fill: 'rgb(48, 130, 167)',
+      fillOpacity: 0.1
+    },
+    bars: "vertical",
+    opacity: 0.2,
   };
 
-  let data = [["Month", "Net Cash Flow"]];
+  let data = [["Month", "Net Cash Flow", {role: 'style'}]];
 
-  data = data.concat(cashFlow.map((el) => Object.values(el).slice(2, 4)));
+  data = data.concat(cashFlow.map((el) => Object.values(el).slice(2, 4).concat('color: grey; opacity: 0.4; stroke-color: black; stroke-width: 2;')));
 
   return (
     <div>
-      <h3 className="networth_cash">Net Cash Flow </h3>
+      <div className="networthcontainer">
+      <div className="nameheaders">
+      <p className="networth_cash">Net Cash Flow </p>
+      </div>
+      <div>
       <Chart
-        chartType="Bar"
-        width="80%"
-        height="400px"
+        chartType="ColumnChart"
+        width="100%"
+        height="200px"
         data={data}
         options={options}
       />
+      </div>
+    </div>
     </div>
   );
 };

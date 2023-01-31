@@ -1,11 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { Slider, Box } from "@material-ui/core";
 
 const UpdateBudgetModal = ({open, onClose, user, token}) => {
     const [value, setValue] = useState(20);
+    const [income, setIncome] = useState(0)
+    useEffect(() => {
+        fetchIncome();
+      }, []);
     if (!open) return null;
+
+    async function fetchIncome() {
+      try {
+          let response = await axios.get(
+              "http://127.0.0.1:8000/api/income/",
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          );
+          setIncome(response["data"][0]);
+        } catch (error) {
+          console.log(error.response);
+        }
+      };
 
 
   function formatDate() {
@@ -65,10 +85,11 @@ const UpdateBudgetModal = ({open, onClose, user, token}) => {
             Based upon your inputted information, below are the recommended
             values for expenses to help you determine your budget.
           </p>
-          <p> Mortgage/Rent: $4,000/month</p>
-          <p> Food: $1,000/month</p>
-          <p> Investing: $1,000/month</p>
-          <p> Discretionary/fun expendiures: $2,000/month</p>
+          <p> Mortgage/Rent: ${parseInt(.36 * income.value)}/month</p>
+          <p> Other Essentials(ie: food, health care, transportation): ${parseInt(.14 * income.value)}/month</p>
+          <p> Investing: ${parseInt(.2 * income.value)}</p>
+          <p> Discretionary/fun expendiures: ${parseInt(.3 * income.value)}/month</p>
+          <p> For a total of: {parseInt(income.value)}</p>
         </div>
         <form onSubmit={handleSubmit}>
           <Box display="Flex" flexdirection="column m={10}">
@@ -77,9 +98,9 @@ const UpdateBudgetModal = ({open, onClose, user, token}) => {
               onChange={changeValue}
               style={{ width: 300 }}
               min={0}
-              max={50000}
+              max={income.value * 1.3}
               defaultValue={20}
-              step={1}
+              step={50}
               getAriaValueText={getText}
               valueLabelDisplay="auto"
             />
