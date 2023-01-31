@@ -89,7 +89,7 @@ const UpdateBudgetModal = ({open, onClose, user, token}) => {
           <p> Other Essentials(ie: food, health care, transportation): ${parseInt(.14 * income.value)}/month</p>
           <p> Investing: ${parseInt(.2 * income.value)}</p>
           <p> Discretionary/fun expendiures: ${parseInt(.3 * income.value)}/month</p>
-          <p> For a total of: {parseInt(income.value)}</p>
+          <p> For a total of: ${parseInt(income.value)}</p>
         </div>
         <form onSubmit={handleSubmit}>
           <Box display="Flex" flexdirection="column m={10}">
