@@ -22,20 +22,19 @@ const NetWorth = () => {
     legend: "none",
     is3d: true,
     lineWidth: 1,
-    curveType: 'function',
-    colors:['darkblue'],
+    curveType: "function",
+    colors: ["darkblue"],
     crosshair: { trigger: "focus" },
     chartArea: {
       backgroundColor: {
-        fill: 'rgb(48, 130, 167)',
-        fillOpacity: 0.1
+        fill: "rgb(48, 130, 167)",
+        fillOpacity: 0.1,
       },
     },
     backgroundColor: {
-      fill: 'rgb(48, 130, 167)',
-      fillOpacity: 0.1
+      fill: "rgb(48, 130, 167)",
+      fillOpacity: 0.1,
     },
-    
   };
   const fetchNetWorth = async () => {
     try {
@@ -50,7 +49,7 @@ const NetWorth = () => {
       setNetWorth(response["data"]);
     } catch (error) {
       console.log(error.response);
-      <div></div>
+      <div></div>;
     }
   };
 
@@ -59,13 +58,18 @@ const NetWorth = () => {
   data = data.concat(
     netWorth.map((el) => Object.values(el).splice(0, 2)).reverse()
   );
+
   return (
     <>
       <div className="networthcontainer">
         <div className="nameheaders">
-        <p className="networth_cash">
-          Net Worth ${netWorth[0]["netWorth"]}</p><p> </p><p className={changeInNetWorth >0 ? "up" : "down"}> (${changeInNetWorth})</p>
-          </div>
+          <p className="networth_cash">Net Worth ${netWorth[0]["netWorth"]}</p>
+          <p> </p>
+          <p className={changeInNetWorth > 0 ? "up" : "down"}>
+            {" "}
+            (${changeInNetWorth})
+          </p>
+        </div>
         <div className="border">
           <Chart
             chartType="LineChart"
@@ -73,7 +77,6 @@ const NetWorth = () => {
             height="200px"
             data={data}
             options={options}
-  
           />
         </div>
       </div>

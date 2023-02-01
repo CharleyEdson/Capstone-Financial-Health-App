@@ -10,6 +10,7 @@ import MainPage from "./pages/MainPage/MainPage";
 import DataInputAL from "./pages/DataInputAL/DataInputAL";
 import Budget from "./pages/Budget/Budget";
 import EditPage from "./pages/EditPage/EditPage";
+import FactFindingPage from "./pages/FactFindingPage/FactFindingPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -52,6 +53,14 @@ function App() {
           element={
             <PrivateRoute>
               <EditPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/factfinding"
+          element={
+            <PrivateRoute>
+              <FactFindingPage />
             </PrivateRoute>
           }
         />
