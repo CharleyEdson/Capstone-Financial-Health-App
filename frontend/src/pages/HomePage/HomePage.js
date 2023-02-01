@@ -67,7 +67,6 @@ const HomePage = (props) => {
         <div className="background">
           <br></br>
           <div>
-            {console.log(userInfo)}
             {userInfo ? (
               <div>
                 <br></br>

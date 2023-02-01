@@ -34,7 +34,35 @@ const FactFinder = (props) => {
     }
   }
 
-  function handleSubmit(event) {
+  async function addUserAssets(userAssets) {
+    const response = await axios.post(
+      "http://127.0.0.1:8000/api/assets/",
+      userAssets,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    if (response.status === 201) {
+      console.log("user Assets posted.");
+    }
+  }
+
+  async function updateNetWorth() {
+    const response = await axios.get(
+      "http://127.0.0.1:8000/api/networth/onceaday/",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+  }
+
+
+
+  const handleSubmit = async (event) => {
     // event.preventDefault();
 
     let newUserInfo = {
@@ -47,8 +75,13 @@ const FactFinder = (props) => {
       relationship_status: relationshipStatus,
       verified_facts: verified,
     };
+    let userAssets = {
+      asset_type: "Cash",
+      value: 0,
+      date: "01/01/2023",
+    };
     addUserInfo(newUserInfo);
-    console.log(newUserInfo);
+    await addUserAssets(userAssets).then(response => updateNetWorth());
   }
 
   return (
@@ -59,7 +92,7 @@ const FactFinder = (props) => {
       <p>To Effectively use this app...</p>
       <p>We need to learn more about you.</p>
       <div className="formcontainer">
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => {handleSubmit(e)}}>
           <div className="formcontainer">
             <div>
               <label>Phone Number</label>
