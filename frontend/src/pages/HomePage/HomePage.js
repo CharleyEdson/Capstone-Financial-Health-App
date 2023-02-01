@@ -14,18 +14,7 @@ import "./HomePage.css";
 
 const HomePage = (props) => {
   const [user, token] = useAuth();
-  const [userInfo, setUserInfo] = useState([
-    {
-      phone_number: "9999999999",
-      age: 30,
-      gender: "male",
-      occupation: "test",
-      risk_level: 6,
-      state_living_in: "CA",
-      relationship_status: "Single",
-      verified_facts: false,
-    },
-  ]);
+  const [userInfo, setUserInfo] = useState(null);
   const [userAssets, setUserAssets] = useState([""]);
   const [netWorth, setNetWorth] = useState([""]);
   const [cashFlow, setcashFlow] = useState([""]);
@@ -41,8 +30,7 @@ const HomePage = (props) => {
         headers: {
           Authorization: "Bearer " + token,
         },
-      });
-      setUserInfo(response["data"][0]);
+      }).then(response => {setUserInfo(response["data"][0]);});
     } catch (error) {
       console.log(error.response);
       setUserInfo({
@@ -80,7 +68,7 @@ const HomePage = (props) => {
           <br></br>
           <div>
             {console.log(userInfo)}
-            {userInfo.verified_facts === true ? (
+            {userInfo ? (
               <div>
                 <br></br>
                 <br></br>
