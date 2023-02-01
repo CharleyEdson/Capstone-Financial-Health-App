@@ -14,11 +14,26 @@ import "./HomePage.css";
 
 const HomePage = (props) => {
   const [user, token] = useAuth();
-  const [userInfo, setUserInfo] = useState([""]);
+  const [userInfo, setUserInfo] = useState([
+    {
+      phone_number: "9999999999",
+      age: 30,
+      gender: "male",
+      occupation: "test",
+      risk_level: 6,
+      state_living_in: "CA",
+      relationship_status: "Single",
+      verified_facts: false,
+    },
+  ]);
   const [userAssets, setUserAssets] = useState([""]);
   const [netWorth, setNetWorth] = useState([""]);
   const [cashFlow, setcashFlow] = useState([""]);
   const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
 
   const fetchUserInfo = async () => {
     try {
@@ -27,10 +42,20 @@ const HomePage = (props) => {
           Authorization: "Bearer " + token,
         },
       });
-
       setUserInfo(response["data"][0]);
     } catch (error) {
       console.log(error.response);
+      setUserInfo({
+        phone_number: "9999999999",
+        age: 30,
+        gender: "male",
+        occupation: "test",
+        risk_level: 6,
+        state_living_in: "CA",
+        relationship_status: "Single",
+        verified_facts: false,
+      });
+      console.log(userInfo);
     }
   };
 
@@ -54,22 +79,23 @@ const HomePage = (props) => {
         <div className="background">
           <br></br>
           <div>
-            {userInfo ? (
+            {console.log(userInfo)}
+            {userInfo.verified_facts === true ? (
               <div>
                 <br></br>
                 <br></br>
                 <h2 className="welcome">Welcome Back, {user.first_name}</h2>
                 <div className="center-component">
-                <NetWorth className="component"/>
+                  <NetWorth className="component" />
                 </div>
                 <br></br>
                 <div className="center-component">
-                <CashFlow className="component"/>
+                  <CashFlow className="component" />
                 </div>
                 <br></br>
-                
+
                 <div className="center-component">
-                <Recommendations className="component"/>
+                  <Recommendations className="component" />
                 </div>
                 <br></br>
               </div>

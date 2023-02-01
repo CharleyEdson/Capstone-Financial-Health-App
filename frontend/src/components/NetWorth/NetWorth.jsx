@@ -50,6 +50,7 @@ const NetWorth = () => {
       setNetWorth(response["data"]);
     } catch (error) {
       console.log(error.response);
+      <div></div>
     }
   };
 

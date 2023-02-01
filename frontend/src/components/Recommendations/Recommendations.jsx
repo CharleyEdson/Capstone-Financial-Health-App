@@ -21,6 +21,7 @@ const Recommendations = (props) => {
       setIncome(response["data"][0]);
     } catch (error) {
       console.log(error.response);
+      <div></div>
     }
   }
 

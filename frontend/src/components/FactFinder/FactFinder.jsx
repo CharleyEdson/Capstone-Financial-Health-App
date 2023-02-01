@@ -17,6 +17,7 @@ const FactFinder = (props) => {
   const [riskAppetite, setRiskAppetite] = useState(0);
   const [verified, setVerified] = useState(false);
   const [user, token] = useAuth();
+  const navigate = useNavigate();
 
   async function addUserInfo(newUserInfo) {
     const response = await axios.post(
@@ -51,99 +52,127 @@ const FactFinder = (props) => {
   }
 
   return (
-    <div>
-      <div>
-        <p>Fact Finder</p>
-      </div>
+    <div className="factscontainer">
+      <br></br>
+      <br></br>
+      <p>Fact Finder</p>
       <p>To Effectively use this app...</p>
       <p>We need to learn more about you.</p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Phone Number</label>
-        </div>
-        <input
-          type="text"
-          value={phoneNumber}
-          onChange={(event) => setPhoneNumber(event.target.value)}
-        ></input>
-        
-        <div>
-          <label>Age</label>
-        </div>
-        <input
-          type="number"
-          value={age}
-          onChange={(event) => setAge(parseInt(event.target.value))}
-        ></input>
-        <div>
-        <label>
-          Gender
-          <div>
-            <select
-              value={gender}
-              onChange={(event) => setGender(event.target.value)}
-            >
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Transgender">Transgender</option>
-              <option value="Non-Binary">Non-Binary</option>
-            </select>
-          </div>
-        </label>
-        </div>
-        <div>
-          <label>Occupation</label>
-        </div>
-        <input
-          type="text"
-          value={occupation}
-          onChange={(event) => setOccupation(event.target.value)}
-        ></input>
-        <div>
-          <label>State Living In</label>
-        </div>
-        <input
-          type="text"
-          value={stateLivedIn}
-          onChange={(event) => setStateLivedIn(event.target.value)}
-        ></input>
-        <div>
-          <label>Relationship Status</label>
-        </div>
-        <input
-          type="text"
-          value={relationshipStatus}
-          onChange={(event) => setRelationshipStatus(event.target.value)}
-        ></input>
-        <div>
-          <label>Risk Appetite</label>
-          <p className="riskexplanation">
-            (Number 1-10. 1 being least risky, 10 being most risky)
-          </p>
-        </div>
-        <input
-          type="number"
-          value={riskAppetite}
-          onChange={(event) => setRiskAppetite(parseInt(event.target.value))}
-        ></input>
-        <div>
-          <label>
-            Please click here to verify you've inputed all the data correctly
-          </label>
-          <div>
+      <div className="formcontainer">
+        <form onSubmit={handleSubmit}>
+          <div className="formcontainer">
+            <div>
+              <label>Phone Number</label>
+            </div>
             <input
-              type="radio"
-              value={verified}
-              onChange={(event) => setVerified(!verified)}
-            />
+            className="inputboxes"
+              type="text"
+              value={phoneNumber}
+              onChange={(event) => setPhoneNumber(event.target.value)}
+            ></input>
           </div>
-        </div>
+          <div className="formcontainer">
+            <div>
+              <label>Age</label>
+            </div>
+            <input
+            className="inputboxes"
+              type="number"
+              value={age}
+              onChange={(event) => setAge(parseInt(event.target.value))}
+            ></input>
+          </div>
+          <div className="formcontainer">
+            <div>
+              <label className="formcontainer">
+                Gender
+                <div>
+                  <select
+                  className="inputboxes"
+                    value={gender}
+                    onChange={(event) => setGender(event.target.value)}
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Transgender">Transgender</option>
+                    <option value="Non-Binary">Non-Binary</option>
+                  </select>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div className="formcontainer">
+            <div>
+              <label>Occupation</label>
+            </div>
+            <input
+            className="inputboxes"
+              type="text"
+              value={occupation}
+              onChange={(event) => setOccupation(event.target.value)}
+            ></input>
+          </div>
+          <div className="formcontainer">
+            <div>
+              <label>State Living In</label>
+            </div>
+            <input
+            className="inputboxes"
+              type="text"
+              value={stateLivedIn}
+              onChange={(event) => setStateLivedIn(event.target.value)}
+            ></input>
+          </div>
+          <div className="formcontainer">
+            <div>
+              <label>Relationship Status</label>
+            </div>
+            <input
+            className="inputboxes"
+              type="text"
+              value={relationshipStatus}
+              onChange={(event) => setRelationshipStatus(event.target.value)}
+            ></input>
+          </div>
+          <div className="formcontainer">
+ 
+              <label>Risk Appetite</label>
+              <p className="riskexplanation">
+                (Number 1-10. 1 being least risky, 10 being most risky)
+              </p>
 
-        <br></br>
-        <div>
-          <button type="submit">Submit Info</button>
-        </div>
-      </form>
+            <input
+            className="inputboxes"
+              type="number"
+              value={riskAppetite}
+              onChange={(event) =>
+                setRiskAppetite(parseInt(event.target.value))
+              }
+            ></input>
+          </div>
+          <div className="formcontainer">
+            <label>
+              Please click here to verify you've inputed all the data correctly
+            </label>
+            <div>
+              <input
+                type="radio"
+                value={verified}
+                onChange={(event) => setVerified(!verified)}
+              />
+            </div>
+          </div>
+
+          <br></br>
+          <div className="formcontainer">
+            
+            <button type="submit">Submit Info</button>
+            <Link to="/edit">
+              <p>Click here to your Financial history!</p>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

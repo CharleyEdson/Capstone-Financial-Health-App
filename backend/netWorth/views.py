@@ -115,7 +115,7 @@ def calculate_net_worth(request):
 def calculate_net_worth_once_a_day(request):
     print(
     'User ', f"{request.user.id} {request.user.email} {request.user.username}")             
-    cash = Asset.objects.filter(user_id=request.user.id).filter(asset_type='Cash').order_by('-date')
+    cash = Asset.objects.filter(user_id=request.user.id).filter(asset_type='Cash').order_by('-id')
     cashes = []
     for obj in cash:
         cashes.append(obj.value)
@@ -169,7 +169,7 @@ def calculate_net_worth_once_a_day(request):
     misc_loan_networth = misc_loans[0]
     total_liabilities = int(mortgage_networth) + int(auto_loan_networth) + int(student_loan_networth) + int(cc_loan_networth) + int(misc_loan_networth)
     total_net_worth = total_assets - total_liabilities
-    current_net_worth = netWorth.objects.filter(user_id=request.user.id).order_by('-date').first()
+    current_net_worth = netWorth.objects.filter(user_id=request.user.id).order_by('-id').first()
     if current_net_worth.date == today:
         current_net_worth.netWorth = total_net_worth
         current_net_worth.asset_total=total_assets

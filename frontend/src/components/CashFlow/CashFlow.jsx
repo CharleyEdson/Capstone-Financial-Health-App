@@ -37,6 +37,7 @@ const CashFlow = () => {
       setCashFlow(response["data"]);
     } catch (error) {
       console.log(error.response);
+      <div></div>
     }
   };
 // https://developers.google.com/chart/interactive/docs/gallery/linechart
