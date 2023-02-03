@@ -127,7 +127,7 @@ const MonthlyInfo = (props) => {
   console.log(historicincexp[0]);
 
   return (
-    <div>
+    <div className="container">
       {info === true ? (
         <div>
           <p>You need to enter your first month's Income and Expense!</p>

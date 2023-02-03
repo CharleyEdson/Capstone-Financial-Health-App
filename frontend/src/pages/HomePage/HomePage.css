@@ -1,23 +1,23 @@
 .background {
     /* background-color: rgb(137, 209, 230); */
-    background: linear-gradient(to right, white 0%, rgb(137, 209, 230) 50%);
+    background: white;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 200% 100%;
-    color: rgb(48, 130, 167);
+    /* color: rgb(48, 130, 167); */
     height: 80rem;
     width: 100%
 }
 
 .welcome {
-    color: black;
+    color: #334A51;
     font-style: italic;
     display: flex;
     justify-content: center;
 }
 
 .networth_cash {
-    color: black;
+    color: #334A51;
 }
 
   

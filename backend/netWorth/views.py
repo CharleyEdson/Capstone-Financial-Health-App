@@ -15,8 +15,6 @@ from datetime import date
 
 # Create your views here.
 
-today = date.today()
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_net_worth(request):
@@ -43,6 +41,7 @@ def delete_net_worth(request,pk):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def calculate_net_worth(request):
+    today = date.today()
     print(
     'User ', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == 'GET':
@@ -118,6 +117,7 @@ def calculate_net_worth(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def calculate_net_worth_once_a_day(request):
+    today = date.today()
     print(
     'User ', f"{request.user.id} {request.user.email} {request.user.username}")             
     try:

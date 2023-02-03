@@ -49,18 +49,20 @@ const InputAssets = (props) => {
 
 
   return (
-    <div>
+    <div className="container">
       <br></br>
-      <ul>For Cash accounts: Think bank accounts, CD's, etc</ul>
+      <div className="container">
+      <ul >For Cash accounts: Think bank accounts, CD's, etc</ul>
       <ul>For Brokerage accounts: Think of any non-retirement investment accounts that you have, ie-robinhood, crypto, etc.</ul>
       <ul>For Retirement accounts: Think of any company retirement plan, ie 401(k), IRA, Roth IRA, etc.</ul>
       <ul>For Real Estate: Think of any homes, or rental properties</ul>
       <ul>For Misc: Think of any other asset you have that keeps it's value.</ul>
+      </div>
       <br></br>
       <form onSubmit={(e) => {handleSubmit(e)}}>
         <div>
-          <div>
-            <label>
+          <div className="container">
+            <label className="container">
               Please select which asset you'd like to input:
               <div>
                 <select

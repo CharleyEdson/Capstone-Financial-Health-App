@@ -10,34 +10,35 @@ li {
 
 .navBar {
   background: white;
-  box-shadow: 4px 2px 5px gray;
+  box-shadow: 4px 2px 5px #334A51;
   color: white;
   margin-bottom: 2rem;
   padding: 1.5rem 2rem;
+  background:#89d1e6;
 }
 
 .navBar button {
-  background: transparent;
-  border: 2px solid rgb(95, 186, 214);
-  color: rgb(95, 186, 214);
+  background: white;
+  border: 2px solid #334A51;
+  color: #334A51;
   padding: 0.4rem 0.5rem;
   border-radius: 10px;
 }
 
 .navBar button:hover {
   background: white;
-  color: steelblue;
+  color: #89D1E6;
   cursor: pointer;
 }
 
 .brand {
   cursor: pointer;
   font-size: 2rem;
-  color: rgb(95, 186, 214);
+  /* color: rgb(95, 186, 214); */
 }
 
 .name {
-  color: rgb(48,130,167);
+  color: #334A51;
 }
 
 .signbuttons {

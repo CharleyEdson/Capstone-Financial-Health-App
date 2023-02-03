@@ -109,12 +109,14 @@ const Budget = (props) => {
     <div>
       <div>{<UserNavBar />}</div>
       <div className="background">
+        <div className="container">
         <h2>Budget Page</h2>
         <div>
-          <p>Current Budget: {currentBudget.budget_value}</p>
+          <p>Current Budget: ${currentBudget.budget_value}</p>
         </div>
         <div>
-          <p onClick={() => setShowModal(true)}>Need to update your budget? Click Here</p>
+          <p onClick={() => setShowModal(true)}>Need to update your budget? <h3>Click Here</h3></p>
+          </div>
         </div>
         <div>
             <UpdateBudgetModal open={showModal} onClose={()=>setShowModal(false)} user={user} token={token}/>

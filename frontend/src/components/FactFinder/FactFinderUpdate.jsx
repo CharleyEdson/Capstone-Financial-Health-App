@@ -51,7 +51,7 @@ const FactFinderUpdate = ({userInfo}) => {
 
 
   return (
-    <div>
+    <div className="container">
       <div>
         <p>Change any field below to update your Profile Information</p>
         <br></br>

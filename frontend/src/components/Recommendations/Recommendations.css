@@ -1,5 +1,5 @@
 .header {
-    color: black;
+    color: #334A51;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -9,7 +9,7 @@
 
     .recommendationscontainer {
         width: 80vh;
-        background-color: rgb(137, 209, 230);
+  
 
 
     }
@@ -17,9 +17,11 @@
 
 .income {
     font-style: italic;
-    color: grey;
+    font-weight: bold;
+    color: #334A51;
 }
 
 .recs {
     font-family: 'Times New Roman', Times, serif;
+    color: #334A51;
 }

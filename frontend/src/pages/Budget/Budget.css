@@ -1,10 +1,10 @@
 .background {
-    background-color: rgb(137, 209, 230);
+    /* background-color: rgb(137, 209, 230); */
     color: rgb(48, 130, 167);
-    height: 60rem;
+    height: 250rem;
 }
 
 .welcome {
-    color: black;
+    color: #334A51;
     font-style: italic;
 }

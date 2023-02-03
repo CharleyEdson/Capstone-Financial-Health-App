@@ -93,7 +93,7 @@ const InputIncExp = ({ currentDate }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <form
         onSubmit={(e) => {handleSubmit(e)}}>
         <div>

@@ -16,21 +16,29 @@ const HomePage = (props) => {
   const [user, token] = useAuth();
   const [userInfo, setUserInfo] = useState(null);
   const [userAssets, setUserAssets] = useState([""]);
-  const [netWorth, setNetWorth] = useState([""]);
-  const [cashFlow, setcashFlow] = useState([""]);
+  const [netWorth, setNetWorth] = useState([]);
+  const [cashFlow, setCashFlow] = useState([]);
   const [isOpen, setOpen] = useState(false);
+  const [income, setIncome] = useState();
 
   useEffect(() => {
     fetchUserInfo();
+    fetchCashFlow();
+    fetchNetWorth();
+    fetchIncome();
   }, []);
 
   const fetchUserInfo = async () => {
     try {
-      let response = await axios.get(`http://127.0.0.1:8000/api/userinfo/`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }).then(response => {setUserInfo(response["data"][0]);});
+      let response = await axios
+        .get(`http://127.0.0.1:8000/api/userinfo/`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((response) => {
+          setUserInfo(response["data"][0]);
+        });
     } catch (error) {
       console.log(error.response);
       setUserInfo({
@@ -47,18 +55,53 @@ const HomePage = (props) => {
     }
   };
 
-  const fetchUserAssets = async () => {
+  const fetchCashFlow = async () => {
     try {
-      let response = await axios.get(`http://127.0.0.1:8000/api/assets/`, {
+      let response = await axios
+        .get("http://127.0.0.1:8000/api/cashflow/historicalnetcashflow/", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((response) => {
+          setCashFlow(response["data"]);
+        });
+    } catch (error) {
+      console.log(error.response);
+      <div></div>;
+    }
+  };
+
+  const fetchNetWorth = async () => {
+    try {
+      let response = await axios.get(
+        `http://127.0.0.1:8000/api/networth/historicalnetworth/`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      setNetWorth(response["data"]);
+      
+    } catch (error) {
+      console.log(error.response);
+      <div></div>;
+    }
+  };
+
+  async function fetchIncome() {
+    try {
+      let response = await axios.get("http://127.0.0.1:8000/api/income/", {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
-      setUserAssets(response["data"]);
+      setIncome(response["data"][0]);
     } catch (error) {
       console.log(error.response);
     }
-  };
+  }
 
   return (
     <>
@@ -72,18 +115,30 @@ const HomePage = (props) => {
                 <br></br>
                 <br></br>
                 <h2 className="welcome">Welcome Back, {user.first_name}</h2>
-                <div className="center-component">
-                  <NetWorth className="component" />
-                </div>
+                {netWorth[0] ? (
+                  <div className="center-component">
+                    <NetWorth className="component" netWorth={netWorth} />
+                  </div>
+                ) : (
+                  <p className="center-component">Please go to the edit page to add assets and liabilities to display net worth</p>
+                )}
                 <br></br>
-                <div className="center-component">
-                  <CashFlow className="component" />
-                </div>
+                {cashFlow[0] ? (
+                  <div className="center-component">
+                    <CashFlow className="component" cashFlow={cashFlow} />
+                  </div>
+                ) : 
+                (<p className="center-component">Please got to the edit page to add monthly income & expenses to display cash flow.</p>)
+                }
                 <br></br>
-
-                <div className="center-component">
-                  <Recommendations className="component" />
-                </div>
+                {income ? 
+                (<div className="center-component">
+                  <Recommendations className="component"  income={income}/>
+                </div>)
+                :
+                (<p className="center-component">Please report a month's income before we can recommend anything. You can do this at the edit page.</p>)
+                }
+                
                 <br></br>
               </div>
             ) : (

@@ -23,9 +23,37 @@ const EditPage = (props) => {
   const [user, token] = useAuth();
 
   const [userInfoObject, setUserInfoObject] = useState({});
+  // const [currentBudget, setCurrentBudget] = useState([
+  //   { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
+  // ]);
+  // const [budgets, setBudgets] = useState([
+  //   { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
+  // ]);
+  // const [expenses, setExpenses] = useState([
+  //   {
+  //     current_income: 11000,
+  //     date: "2023-02-01",
+  //     id: 3,
+  //     current_expense: 8000,
+  //     month: "February",
+  //     user_id: 2,
+  //     year: "2023",
+  //   },
+  //   {
+  //     current_expense: 8000,
+  //     current_income: 11000,
+  //     date: "2023-02-01",
+  //     id: 3,
+  //     month: "February",
+  //     user_id: 2,
+  //     year: "2023",
+  //   },
+  // ]);
 
   useEffect(() => {
     fetchUserInfo();
+    // fetchUserBudget();
+    // fetchUserExpenses();
   }, []);
 
 
@@ -90,6 +118,36 @@ function handleProjectedIncomeSubmit() {
     setProjectedIncome(true);
 } 
 
+// const fetchUserBudget = async () => {
+//   try {
+//     let response = await axios.get(`http://127.0.0.1:8000/api/budget/`, {
+//       headers: {
+//         Authorization: "Bearer " + token,
+//       },
+//     });
+//     setCurrentBudget(response["data"][0]);
+//     setBudgets(response["data"]);
+//   } catch (error) {
+//     console.log(error.response);
+//   }
+// };
+
+// const fetchUserExpenses = async () => {
+//   try {
+//     let response = await axios.get(
+//       `http://127.0.0.1:8000/api/currentincexp/historicalcurrents/`,
+//       {
+//         headers: {
+//           Authorization: "Bearer " + token,
+//         },
+//       }
+//     );
+//     setExpenses(response["data"]);
+//   } catch (error) {
+//     console.log(error.response);
+//   }
+// };
+
 
   return (
     <>
@@ -113,23 +171,24 @@ function handleProjectedIncomeSubmit() {
             <></>
         )}
         {monthlyInfo === true ? (
-          <div>
-            <h1>Please enter updated information here </h1>
+          <div className="container">
+            <br></br>
+            <h1 className="container">Please enter updated information here </h1>
             <MonthlyInfo />
             <br></br>
-            <button onClick={handleEditButtons}>Complete</button>
+            <button onClick={handleEditButtons} className="container">Complete</button>
           </div>
         ) : (
           <>
           </>
         )}
         {assetsLiabilities === true ? (
-          <div>
-            <h1>Please enter updated assets/liabilities here, or new ones </h1>
+          <div className="container">
+            <h1>Please enter updated assets/liabilities here, or new ones:</h1>
             <InputAssets />
             <InputLiabilities />
             <br></br>
-            <button onClick={handleEditButtons}>Complete</button>
+            <button onClick={handleEditButtons} className="container">Complete</button>
           </div>
         ) : (
           <>
@@ -137,7 +196,7 @@ function handleProjectedIncomeSubmit() {
         )}
         {updateBudget === true ? (
           <div>
-            <h1>Please enter your new Budget </h1>
+            <h1 className="container">Please enter your new Budget </h1>
             <Budget />
             <button onClick={handleEditButtons}>Complete</button>
             <br></br>
@@ -147,9 +206,10 @@ function handleProjectedIncomeSubmit() {
           </>
         )}
         {userInfo === true ? (
-          <div>
+          <div className="container">
             <h1>Please Update your user Info </h1>
             <FactFinderUpdate userInfo={userInfoObject} />
+            <br></br>
             <button onClick={handleEditButtons}>Complete</button>
             <br></br>
           </div>
@@ -158,9 +218,11 @@ function handleProjectedIncomeSubmit() {
           </>
         )}
         {projectedIncome === true ? (
-          <div>
+          <div className="container">
+            <br></br>
             <h1>What is your Projected Income for the year? </h1>
             <ProjectedIncome />
+            <br></br>
             <button onClick={handleEditButtons}>Complete</button>
             <br></br>
           </div>

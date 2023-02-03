@@ -59,8 +59,20 @@ const FactFinder = (props) => {
       }
     );
   }
-
-
+  async function adduserBudget(userBudget) {
+    const response = await axios.post(
+      "http://127.0.0.1:8000/api/budget/",
+      userBudget,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    if (response.status === 201) {
+      console.log("user Budget posted.");
+    }
+  }
 
   const handleSubmit = async (event) => {
     // event.preventDefault();
@@ -80,9 +92,15 @@ const FactFinder = (props) => {
       value: 0,
       date: "01/01/2023",
     };
+    // adding in filler data for budget here
+    let userBudget = {
+      budget_value: 0,
+      date: "01/01/2023",
+    };
+    adduserBudget(userBudget);
     addUserInfo(newUserInfo);
-    await addUserAssets(userAssets).then(response => updateNetWorth());
-  }
+    await addUserAssets(userAssets).then((response) => updateNetWorth());
+  };
 
   return (
     <div className="factscontainer">
@@ -92,13 +110,17 @@ const FactFinder = (props) => {
       <p>To Effectively use this app...</p>
       <p>We need to learn more about you.</p>
       <div className="formcontainer">
-      <form onSubmit={(e) => {handleSubmit(e)}}>
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
           <div className="formcontainer">
             <div>
               <label>Phone Number</label>
             </div>
             <input
-            className="inputboxes"
+              className="inputboxes"
               type="text"
               value={phoneNumber}
               onChange={(event) => setPhoneNumber(event.target.value)}
@@ -109,7 +131,7 @@ const FactFinder = (props) => {
               <label>Age</label>
             </div>
             <input
-            className="inputboxes"
+              className="inputboxes"
               type="number"
               value={age}
               onChange={(event) => setAge(parseInt(event.target.value))}
@@ -121,7 +143,7 @@ const FactFinder = (props) => {
                 Gender
                 <div>
                   <select
-                  className="inputboxes"
+                    className="inputboxes"
                     value={gender}
                     onChange={(event) => setGender(event.target.value)}
                   >
@@ -139,7 +161,7 @@ const FactFinder = (props) => {
               <label>Occupation</label>
             </div>
             <input
-            className="inputboxes"
+              className="inputboxes"
               type="text"
               value={occupation}
               onChange={(event) => setOccupation(event.target.value)}
@@ -150,7 +172,7 @@ const FactFinder = (props) => {
               <label>State Living In</label>
             </div>
             <input
-            className="inputboxes"
+              className="inputboxes"
               type="text"
               value={stateLivedIn}
               onChange={(event) => setStateLivedIn(event.target.value)}
@@ -161,21 +183,20 @@ const FactFinder = (props) => {
               <label>Relationship Status</label>
             </div>
             <input
-            className="inputboxes"
+              className="inputboxes"
               type="text"
               value={relationshipStatus}
               onChange={(event) => setRelationshipStatus(event.target.value)}
             ></input>
           </div>
           <div className="formcontainer">
- 
-              <label>Risk Appetite</label>
-              <p className="riskexplanation">
-                (Number 1-10. 1 being least risky, 10 being most risky)
-              </p>
+            <label>Risk Appetite</label>
+            <p className="riskexplanation">
+              (Number 1-10. 1 being least risky, 10 being most risky)
+            </p>
 
             <input
-            className="inputboxes"
+              className="inputboxes"
               type="number"
               value={riskAppetite}
               onChange={(event) =>
@@ -198,7 +219,6 @@ const FactFinder = (props) => {
 
           <br></br>
           <div className="formcontainer">
-            
             <button type="submit">Submit Info</button>
             <Link to="/edit">
               <p>Click here to your Financial history!</p>

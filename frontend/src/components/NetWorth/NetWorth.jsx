@@ -6,19 +6,13 @@ import { Link } from "react-router-dom";
 import { Chart } from "react-google-charts";
 import "./NetWorth.css";
 
-const NetWorth = () => {
+const NetWorth = ({netWorth}) => {
   const [user, token] = useAuth();
-  const [netWorth, setNetWorth] = useState([
-    { date: "2023-01-19", netWorth: 4160000, id: 5, user_id: 2 },
-    { date: "2023-01-19", netWorth: 4260000, id: 6, user_id: 2 },
-  ]);
 
-  useEffect(() => {
-    fetchNetWorth();
-  }, []);
-
+  
   const options = {
     title: "Net Worth",
+    titleColor: "#334A51",
     legend: "none",
     is3d: true,
     lineWidth: 1,
@@ -36,26 +30,12 @@ const NetWorth = () => {
       fillOpacity: 0.1,
     },
   };
-  const fetchNetWorth = async () => {
-    try {
-      let response = await axios.get(
-        `http://127.0.0.1:8000/api/networth/historicalnetworth/`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      setNetWorth(response["data"]);
-    } catch (error) {
-      console.log(error.response);
-      <div></div>;
-    }
-  };
-
+  
+ 
   let data = [["Date", "NetWorth"]];
-  let changeInNetWorth = netWorth[0]["netWorth"] - netWorth[1]["netWorth"];
-  data = data.concat(
+
+
+    data = data.concat(
     netWorth.map((el) => Object.values(el).splice(0, 2)).reverse()
   );
 
@@ -63,12 +43,13 @@ const NetWorth = () => {
     <>
       <div className="networthcontainer">
         <div className="nameheaders">
+  
           <p className="networth_cash">Net Worth ${netWorth[0]["netWorth"]}</p>
-          <p> </p>
-          <p className={changeInNetWorth > 0 ? "up" : "down"}>
+          {/* {netWorth[1] ==! undefined ? (<p className={changeInNetWorth >= 0 ? "up" : "down"}>
             {" "}
             (${changeInNetWorth})
-          </p>
+          </p>)
+          :null } */}
         </div>
         <div className="border">
           <Chart

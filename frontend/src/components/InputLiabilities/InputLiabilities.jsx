@@ -47,7 +47,7 @@ const InputLiabilities = () => {
   }
 
   return (
-    <div>   
+    <div className="container">   
       <br></br>
       <form onSubmit={(e) => {
           handleSubmit(e);

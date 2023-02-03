@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { Slider, Box } from "@material-ui/core";
+import "./UpdateBudgetModal.css"
 
 const UpdateBudgetModal = ({open, onClose, user, token}) => {
     const [value, setValue] = useState(20);
@@ -78,8 +79,8 @@ const UpdateBudgetModal = ({open, onClose, user, token}) => {
   return (
     <div>
       <div>
-        <div>
-            
+        <div className="container">
+
           <p>Please use the slider to pick your monthly budget.</p>
           <p>
             Based upon your inputted information, below are the recommended
@@ -91,13 +92,14 @@ const UpdateBudgetModal = ({open, onClose, user, token}) => {
           <p> Discretionary/fun expendiures: ${parseInt(.3 * income.value)}/month</p>
           <p> For a total of: ${parseInt(income.value)}</p>
         </div>
-        <form onSubmit={handleSubmit}>
-          <Box display="Flex" flexdirection="column m={10}">
+        <form onSubmit={handleSubmit} className="container">
+          <Box className="slider">
             <Slider
               value={value}
               onChange={changeValue}
-              style={{ width: 300 }}
+              style={{ width: 300 , color: "#A187AF"}}
               min={0}
+              
               max={income.value * 1.3}
               defaultValue={20}
               step={50}
@@ -106,7 +108,7 @@ const UpdateBudgetModal = ({open, onClose, user, token}) => {
             />
           </Box>
           <button type="submit">Submit</button>
-          <p onClick={onClose}> Close </p>
+          <h2 onClick={onClose}> Close </h2>
         </form>
       </div>
     </div>
