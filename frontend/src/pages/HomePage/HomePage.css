@@ -36,3 +36,13 @@
 .component {
     width: 100%
 }
+
+.alert  {
+  position: fixed;
+  top: '50%';
+  left: '50%';
+  transform: 'translate(-50%, -50%)';
+  background-Color: 'red';
+  padding: '20px';
+  border-Radius: '10px';
+}

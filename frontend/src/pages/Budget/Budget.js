@@ -92,22 +92,31 @@ const Budget = (props) => {
 
   
   const options = {
-    chart: {
-      title: "Budget",
-      subtitle: "Months",
-      legend: 'none',
+    title: "Over/Under Budget",
+    titleColor: "#334A51",
+    legend: "none",
+    is3d: true,
+    lineWidth: 1,
+    bar: {width: 25},
+    corsshair: { trigger: "focus" },
+    chartArea: {
+      backgroundColor: {
+        fill: "#89D1E6",
+        fillOpacity: 0.4,
+      },
     },
+    bars: "vertical",
+    opacity: 0.2,
   };
 
   let headers = [["Month", "Over/Under Budget", { role: "style" }],];
   let data = expenses.map((el) => Object.values(el).splice(5, 6))
-  let calcbudget = data.map((el) => [el[0],el[1]-currentBudget.budget_value].concat('color: #89D1E6')).reverse()
+  let calcbudget = data.map((el) => [el[0],el[1]-currentBudget.budget_value].concat('color: #334A51; opacity: 1; stroke-color: #96AFB8; stroke-width: 1;')).reverse()
   let final_data = headers.concat(calcbudget)
 
   return (
     <div>
       <div>{<UserNavBar />}</div>
-      <div className="background">
         <div className="container">
         <h2>Budget Page</h2>
         <div>
@@ -122,19 +131,18 @@ const Budget = (props) => {
         </div>
         <br></br>
         <div>
-          <h3>Over/Under Budget</h3>
-          <div>
+          <h3 className="container">Over/Under Budget</h3>
+          <div className="graphcontainer">
           <Chart
-        chartType="Bar"
-        width="80%"
-        height="400px"
+        chartType="ColumnChart"
+        width="100%"
+        height="500px"
         data={final_data}
         options={options}
-        />
+      />
             </div>
         </div>
       </div>
-    </div>
   );
 };
 

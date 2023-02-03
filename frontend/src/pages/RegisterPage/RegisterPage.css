@@ -6,11 +6,15 @@
 
 .registerbutton {
     background-color: white;
-    color: rgb(137, 209, 230);
+    color: #334A51;
     border-color: grey;
 
 }
 
 .titles {
-    color: white
+    color: #334A51;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

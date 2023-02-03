@@ -11,25 +11,6 @@ const CashFlow = ({cashFlow}) => {
   const [user, token] = useAuth();
    
 
-  // useEffect(() => {
-  //   fetchCashFlow();
-  // }, []);
-
-  // const fetchCashFlow = async () => {
-  //   try {
-  //     let response = await axios.get(
-  //       "http://127.0.0.1:8000/api/cashflow/historicalnetcashflow/",
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + token,
-  //         },
-  //       }
-  //     ).then(response => {setCashFlow(response["data"]);});
-  //   } catch (error) {
-  //     console.log(error.response);
-  //     <div></div>
-  //   }
-  // };
 // https://developers.google.com/chart/interactive/docs/gallery/linechart
 // to style charts
   const options = {
@@ -46,23 +27,18 @@ const CashFlow = ({cashFlow}) => {
         fillOpacity: 0.4,
       },
     },
-    // backgroundColor: {
-    //   fill: 'rgb(48, 130, 167)',
-    //   fillOpacity: 0.1
-    // },
     bars: "vertical",
     opacity: 0.2,
   };
 
 
     let data = [["Month", "Net Cash Flow", {role: 'style'}]];
-    data = data.concat(cashFlow.map((el) => Object.values(el).slice(2, 4).concat('color: #334A51; opacity: 1; stroke-color: #96AFB8; stroke-width: 1;')));
-    console.log("test")
+    data = data.concat(cashFlow.map((el) => Object.values(el).slice(2, 4).concat('color: #334A51; opacity: 1; stroke-color: #96AFB8; stroke-width: 1;')).reverse());
+
     
 
   return (
     <div>
-      {console.log(cashFlow)}
       {cashFlow ? <div className="networthcontainer">
       <div className="nameheaders">
       <p className="networth_cash">Net Cash Flow </p>

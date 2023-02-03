@@ -23,37 +23,10 @@ const EditPage = (props) => {
   const [user, token] = useAuth();
 
   const [userInfoObject, setUserInfoObject] = useState({});
-  // const [currentBudget, setCurrentBudget] = useState([
-  //   { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
-  // ]);
-  // const [budgets, setBudgets] = useState([
-  //   { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
-  // ]);
-  // const [expenses, setExpenses] = useState([
-  //   {
-  //     current_income: 11000,
-  //     date: "2023-02-01",
-  //     id: 3,
-  //     current_expense: 8000,
-  //     month: "February",
-  //     user_id: 2,
-  //     year: "2023",
-  //   },
-  //   {
-  //     current_expense: 8000,
-  //     current_income: 11000,
-  //     date: "2023-02-01",
-  //     id: 3,
-  //     month: "February",
-  //     user_id: 2,
-  //     year: "2023",
-  //   },
-  // ]);
+ 
 
   useEffect(() => {
     fetchUserInfo();
-    // fetchUserBudget();
-    // fetchUserExpenses();
   }, []);
 
 
@@ -118,37 +91,6 @@ function handleProjectedIncomeSubmit() {
     setProjectedIncome(true);
 } 
 
-// const fetchUserBudget = async () => {
-//   try {
-//     let response = await axios.get(`http://127.0.0.1:8000/api/budget/`, {
-//       headers: {
-//         Authorization: "Bearer " + token,
-//       },
-//     });
-//     setCurrentBudget(response["data"][0]);
-//     setBudgets(response["data"]);
-//   } catch (error) {
-//     console.log(error.response);
-//   }
-// };
-
-// const fetchUserExpenses = async () => {
-//   try {
-//     let response = await axios.get(
-//       `http://127.0.0.1:8000/api/currentincexp/historicalcurrents/`,
-//       {
-//         headers: {
-//           Authorization: "Bearer " + token,
-//         },
-//       }
-//     );
-//     setExpenses(response["data"]);
-//   } catch (error) {
-//     console.log(error.response);
-//   }
-// };
-
-
   return (
     <>
       <UserNavBar />
@@ -197,9 +139,11 @@ function handleProjectedIncomeSubmit() {
         {updateBudget === true ? (
           <div >
             <br></br>
+            <div className="container">
             <h1 className="container">Please enter your new Budget </h1>
             <Budget />
             <button onClick={handleEditButtons}>Complete</button>
+            </div>
             <br></br>
           </div>
         ) : (

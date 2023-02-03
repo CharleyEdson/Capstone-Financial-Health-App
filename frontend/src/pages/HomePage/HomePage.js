@@ -21,12 +21,20 @@ const HomePage = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [income, setIncome] = useState();
   const [changeInNetWorth, setChangeInNetWorth] = useState();
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     fetchUserInfo();
     fetchCashFlow();
     fetchNetWorth();
     fetchIncome();
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    const isMonday = dayOfWeek === 1;
+
+    if (isMonday) {
+      setShowAlert(true);
+    }
   }, []);
 
   const fetchUserInfo = async () => {
@@ -85,11 +93,10 @@ const HomePage = (props) => {
       );
       setNetWorth(response["data"]);
       try {
-      setChangeInNetWorth((response["data"][0].netWorth-response["data"][1].netWorth))
-    } catch(error) {
-
-    }
-      
+        setChangeInNetWorth(
+          response["data"][0].netWorth - response["data"][1].netWorth
+        );
+      } catch (error) {}
     } catch (error) {
       console.log(error.response);
       <div></div>;
@@ -115,6 +122,18 @@ const HomePage = (props) => {
       <div className={`content ${isOpen ? "push" : ""}`}>
         <div className="background">
           <br></br>
+
+          <div>
+          <br></br>
+                <br></br>
+            {showAlert && (
+              <div className="container">
+           
+                <h2>Please make sure to update your Data!</h2>
+                <button onClick={() => setShowAlert(false)}>Close</button>
+              </div>
+            )}
+          </div>
           <div>
             {userInfo ? (
               <div>
@@ -123,28 +142,41 @@ const HomePage = (props) => {
                 <h2 className="welcome">Welcome Back, {user.first_name}</h2>
                 {netWorth[0] ? (
                   <div className="center-component">
-                    <NetWorth className="component" netWorth={netWorth} changeInNetWorth={changeInNetWorth} />
+                    <NetWorth
+                      className="component"
+                      netWorth={netWorth}
+                      changeInNetWorth={changeInNetWorth}
+                    />
                   </div>
                 ) : (
-                  <p className="center-component">Please go to the edit page to add assets and liabilities to display net worth</p>
+                  <p className="center-component">
+                    Please go to the edit page to add assets and liabilities to
+                    display net worth
+                  </p>
                 )}
                 <br></br>
                 {cashFlow[0] ? (
                   <div className="center-component">
                     <CashFlow className="component" cashFlow={cashFlow} />
                   </div>
-                ) : 
-                (<p className="center-component">Please got to the edit page to add monthly income & expenses to display cash flow.</p>)
-                }
+                ) : (
+                  <p className="center-component">
+                    Please got to the edit page to add monthly income & expenses
+                    to display cash flow.
+                  </p>
+                )}
                 <br></br>
-                {income ? 
-                (<div className="center-component">
-                  <Recommendations className="component"  income={income}/>
-                </div>)
-                :
-                (<p className="center-component">Please report a month's income before we can recommend anything. You can do this at the edit page.</p>)
-                }
-                
+                {income ? (
+                  <div className="center-component">
+                    <Recommendations className="component" income={income} />
+                  </div>
+                ) : (
+                  <p className="center-component">
+                    Please report a month's income before we can recommend
+                    anything. You can do this at the edit page.
+                  </p>
+                )}
+
                 <br></br>
               </div>
             ) : (
