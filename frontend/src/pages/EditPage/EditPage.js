@@ -195,7 +195,8 @@ function handleProjectedIncomeSubmit() {
           </>
         )}
         {updateBudget === true ? (
-          <div>
+          <div >
+            <br></br>
             <h1 className="container">Please enter your new Budget </h1>
             <Budget />
             <button onClick={handleEditButtons}>Complete</button>

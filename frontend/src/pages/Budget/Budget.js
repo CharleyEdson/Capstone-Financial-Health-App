@@ -99,11 +99,10 @@ const Budget = (props) => {
     },
   };
 
-  let headers = [["Month", "Over/Under Budget"],];
+  let headers = [["Month", "Over/Under Budget", { role: "style" }],];
   let data = expenses.map((el) => Object.values(el).splice(5, 6))
-  let calcbudget = data.map((el) => [el[0],el[1]-currentBudget.budget_value]).reverse()
+  let calcbudget = data.map((el) => [el[0],el[1]-currentBudget.budget_value].concat('color: #89D1E6')).reverse()
   let final_data = headers.concat(calcbudget)
-
 
   return (
     <div>

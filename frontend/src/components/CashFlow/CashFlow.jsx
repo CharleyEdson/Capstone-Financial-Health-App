@@ -38,24 +38,25 @@ const CashFlow = ({cashFlow}) => {
     legend: "none",
     is3d: true,
     lineWidth: 1,
+    bar: {width: 25},
     corsshair: { trigger: "focus" },
     chartArea: {
       backgroundColor: {
-        fill: 'rgb(48, 130, 167)',
-        fillOpacity: 0.1
+        fill: "#89D1E6",
+        fillOpacity: 0.4,
       },
     },
-    backgroundColor: {
-      fill: 'rgb(48, 130, 167)',
-      fillOpacity: 0.1
-    },
+    // backgroundColor: {
+    //   fill: 'rgb(48, 130, 167)',
+    //   fillOpacity: 0.1
+    // },
     bars: "vertical",
     opacity: 0.2,
   };
 
 
     let data = [["Month", "Net Cash Flow", {role: 'style'}]];
-    data = data.concat(cashFlow.map((el) => Object.values(el).slice(2, 4).concat('color: grey; opacity: 0.4; stroke-color: black; stroke-width: 2;')));
+    data = data.concat(cashFlow.map((el) => Object.values(el).slice(2, 4).concat('color: #334A51; opacity: 1; stroke-color: #96AFB8; stroke-width: 1;')));
     console.log("test")
     
 

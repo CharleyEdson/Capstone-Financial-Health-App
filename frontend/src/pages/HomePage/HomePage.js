@@ -20,6 +20,7 @@ const HomePage = (props) => {
   const [cashFlow, setCashFlow] = useState([]);
   const [isOpen, setOpen] = useState(false);
   const [income, setIncome] = useState();
+  const [changeInNetWorth, setChangeInNetWorth] = useState();
 
   useEffect(() => {
     fetchUserInfo();
@@ -83,6 +84,11 @@ const HomePage = (props) => {
         }
       );
       setNetWorth(response["data"]);
+      try {
+      setChangeInNetWorth((response["data"][0].netWorth-response["data"][1].netWorth))
+    } catch(error) {
+
+    }
       
     } catch (error) {
       console.log(error.response);
@@ -117,7 +123,7 @@ const HomePage = (props) => {
                 <h2 className="welcome">Welcome Back, {user.first_name}</h2>
                 {netWorth[0] ? (
                   <div className="center-component">
-                    <NetWorth className="component" netWorth={netWorth} />
+                    <NetWorth className="component" netWorth={netWorth} changeInNetWorth={changeInNetWorth} />
                   </div>
                 ) : (
                   <p className="center-component">Please go to the edit page to add assets and liabilities to display net worth</p>

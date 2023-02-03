@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Chart } from "react-google-charts";
 import "./NetWorth.css";
 
-const NetWorth = ({netWorth}) => {
+const NetWorth = ({netWorth, changeInNetWorth}) => {
   const [user, token] = useAuth();
 
   
@@ -17,18 +17,20 @@ const NetWorth = ({netWorth}) => {
     is3d: true,
     lineWidth: 1,
     curveType: "function",
-    colors: ["darkblue"],
+    colors: ["#A187AF"],
     crosshair: { trigger: "focus" },
     chartArea: {
       backgroundColor: {
-        fill: "rgb(48, 130, 167)",
-        fillOpacity: 0.1,
+        fill: "#89D1E6",
+        fillOpacity: 0.4,
       },
+      
     },
-    backgroundColor: {
-      fill: "rgb(48, 130, 167)",
-      fillOpacity: 0.1,
-    },
+    // backgroundColor: {
+    //   fill: "#89D1E6",
+    //   fillOpacity: .5,
+    // },
+    
   };
   
  
@@ -45,11 +47,11 @@ const NetWorth = ({netWorth}) => {
         <div className="nameheaders">
   
           <p className="networth_cash">Net Worth ${netWorth[0]["netWorth"]}</p>
-          {/* {netWorth[1] ==! undefined ? (<p className={changeInNetWorth >= 0 ? "up" : "down"}>
-            {" "}
-            (${changeInNetWorth})
-          </p>)
-          :null } */}
+          {changeInNetWorth === undefined ? (null) 
+          : (<p className={changeInNetWorth >= 0 ? "up" : "down"}>
+            
+           &ensp; (${changeInNetWorth})
+        </p>) }
         </div>
         <div className="border">
           <Chart

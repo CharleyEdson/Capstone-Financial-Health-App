@@ -8,3 +8,12 @@
     color: #334A51;
     font-style: italic;
 }
+
+
+.chartcontainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+}
