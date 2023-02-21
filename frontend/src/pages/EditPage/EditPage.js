@@ -100,13 +100,13 @@ function handleProjectedIncomeSubmit() {
         {editButtons === true ? (
             <div>
             <div className="buttons">
+              <button onClick={handleALSubmit}>Update or Add Assets & Liabilities</button>
+              <button onClick={handleProjectedIncomeSubmit}>Projected Income</button>
               <button onClick={handleMonthlyInfoSubmit}>
                 Input Monthly Info
               </button>
-              <button onClick={handleALSubmit}>Update or Add Assets & Liabilities</button>
               <button onClick={handleBudgetSubmit}>Budget</button>
               <button onClick={handleUserInfoSubmit}>User Info</button>
-              <button onClick={handleProjectedIncomeSubmit}>Projected Income</button>
             </div>
           </div>
         ) : (

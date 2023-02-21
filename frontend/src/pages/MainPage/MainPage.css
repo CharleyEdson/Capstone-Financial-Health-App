@@ -6,7 +6,7 @@
 
 .signup {
     background-color: #89D1E6;
-    color: #334A51;
+    color: #334a51;
     border-radius: 20px;
     padding: 4px;
 }
@@ -20,3 +20,28 @@
     align-items: center;
 }
 
+.title {
+    font-size: 32.36px;
+    color: #0A8754;
+}
+
+.localtitle {
+    text-align: center;
+}
+
+.box {
+    color: #0A8754;
+    width: 300px;
+    height: min-content;
+    /* border: 2px solid #334A51; */
+    padding: 10px;
+    overflow: auto;
+    text-align: center;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: flex-start; */
+    border-radius: 20px;
+    
+}

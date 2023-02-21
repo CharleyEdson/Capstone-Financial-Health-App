@@ -65,7 +65,7 @@ const UpdateBudgetModal = ({open, onClose, user, token}) => {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+
     let userBudget = {
       budget_value: value,
       date: newdate,

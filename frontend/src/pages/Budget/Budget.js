@@ -67,8 +67,13 @@ const Budget = (props) => {
           Authorization: "Bearer " + token,
         },
       });
-      setCurrentBudget(response["data"][0]);
-      setBudgets(response["data"]);
+      if (response["data"][0] === undefined)
+      {setCurrentBudget([
+        { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
+      ])}
+      else {setCurrentBudget(response["data"][0]);
+      setBudgets(response["data"]);}
+      
     } catch (error) {
       console.log(error.response);
     }
