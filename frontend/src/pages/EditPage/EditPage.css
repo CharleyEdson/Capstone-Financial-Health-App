@@ -13,6 +13,7 @@
     flex-wrap: wrap;
     align-items: center;
     align-content: space-around;
+    color: #EF946C;
 }
 
 .buttons button{
@@ -20,8 +21,8 @@
     height: 100px;
     padding: 8px 0;
     border-radius: 25px;
-    border: 3px solid #334A51;
-    color: #334A51;
+    border: 3px solid #89D1E6;
+    color: #0A8754;
 
 }
 

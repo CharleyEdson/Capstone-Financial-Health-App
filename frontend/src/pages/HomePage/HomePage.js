@@ -124,11 +124,10 @@ const HomePage = (props) => {
           <br></br>
 
           <div>
-          <br></br>
-                <br></br>
+            <br></br>
+            <br></br>
             {showAlert && (
               <div className="container">
-           
                 <h2>Please make sure to update your Data!</h2>
                 <button onClick={() => setShowAlert(false)}>Close</button>
               </div>
@@ -139,7 +138,7 @@ const HomePage = (props) => {
               <div>
                 <br></br>
                 <br></br>
-                <h2 className="welcome">Welcome Back, {user.first_name}</h2>
+                <h2 className="welcomehome">Welcome Back, {user.first_name}</h2>
                 {netWorth[0] ? (
                   <div className="center-component">
                     <NetWorth
