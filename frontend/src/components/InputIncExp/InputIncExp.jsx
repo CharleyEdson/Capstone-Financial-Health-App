@@ -89,37 +89,46 @@ const InputIncExp = ({ currentDate }) => {
       month: month,
       date: date,
     };
-    await postIncExp(currents).then(response => calculateCashFlow());
+    await postIncExp(currents).then((response) => calculateCashFlow());
   };
 
   return (
     <div className="container">
-      <form
-        onSubmit={(e) => {handleSubmit(e)}}>
-        <div>
-          <label>
-            Please enter your total Income/cash flow for the previous month:
-          </label>
-        </div>
-        <input
-          type="number"
-          value={monthlyIncome}
-          onChange={(event) => setMonthlyIncome(event.target.value)}
-        ></input>
-        <div>
-          <label>
-            Please enter your total Expenses for the previous month:
-          </label>
-        </div>
-        <input
-          type="number"
-          value={monthlyExpense}
-          onChange={(event) => setMonthlyExpense(event.target.value)}
-        ></input>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+      <div className="inputassets">
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
+          <div>
+            <label>
+              Please enter your total Income/cash flow for the previous month:
+            </label>
+          </div>
+          <input
+            type="number"
+            value={monthlyIncome}
+            onChange={(event) => setMonthlyIncome(event.target.value)}
+          ></input>
+          <div>
+            <label>
+              Please enter your total Expenses for the previous month:
+            </label>
+          </div>
+          <input
+            type="number"
+            value={monthlyExpense}
+            onChange={(event) => setMonthlyExpense(event.target.value)}
+          ></input>
+          <div className="buttonspacer"></div>
+          <div>
+            <button className="assetsubmit" type="submit">
+              Submit
+            </button>
+          </div>
+          <div className="buttonspacer"></div>
+        </form>
+      </div>
     </div>
   );
 };

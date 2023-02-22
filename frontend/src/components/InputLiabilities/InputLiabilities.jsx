@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import "./InputLiabilities.css";
 
 const InputLiabilities = () => {
   const [type_of_liability, setType_of_liability] = useState("Mortgage");
@@ -35,7 +36,7 @@ const InputLiabilities = () => {
     );
   }
 
-  const handleSubmit = async (event)=> {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     let userLiabilities = {
       type_of_liability: type_of_liability,
@@ -43,16 +44,20 @@ const InputLiabilities = () => {
       monthly_payment: monthlyPayment,
       date: date,
     };
-    await addUserLiabilities(userLiabilities).then(response =>updateNetWorth());
-  }
+    await addUserLiabilities(userLiabilities).then((response) =>
+      updateNetWorth()
+    );
+  };
 
   return (
-    <div className="container">   
+    <div className="container">
       <br></br>
-      <form onSubmit={(e) => {
+      <form
+        onSubmit={(e) => {
           handleSubmit(e);
-        }}>
-        <div>
+        }}
+      >
+        <div className="inputassets">
           <div>
             <label>
               Please select which liability you'd like to input:
@@ -84,9 +89,11 @@ const InputLiabilities = () => {
           <input
             type="number"
             value={monthlyPayment}
-            onChange={(event) => setMonthlyPayment(parseInt(event.target.value))}
+            onChange={(event) =>
+              setMonthlyPayment(parseInt(event.target.value))
+            }
           ></input>
-          <div> 
+          <div>
             <label>Please input the Date of value for the asset:</label>
           </div>
           <input
@@ -94,15 +101,17 @@ const InputLiabilities = () => {
             value={date}
             onChange={(event) => setDate(event.target.value)}
           ></input>
-        </div>
-        <div>
-          <button type="submit">Submit Info</button>
+          <div className="buttonspacer"></div>
+          <div>
+            <button className="assetsubmit" type="submit">
+              Submit Info
+            </button>
+          </div>
+          <div className="buttonspacer"></div>
         </div>
       </form>
     </div>
-  )
-  
- 
+  );
 };
 
 export default InputLiabilities;

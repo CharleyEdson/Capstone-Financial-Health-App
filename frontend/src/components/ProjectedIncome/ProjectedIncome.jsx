@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import "./ProjectedIncome.css";
 
 const ProjectedIncome = (props) => {
   const [incomeType, setIncomeType] = useState("Total");
@@ -39,7 +40,7 @@ const ProjectedIncome = (props) => {
   };
 
   return (
-    <div>
+    <div className="inputassets">
       <br></br>
       <form
         onSubmit={(e) => {
@@ -62,10 +63,13 @@ const ProjectedIncome = (props) => {
           value={date}
           onChange={(event) => setDate(event.target.value)}
         ></input>
-
+        <div className="buttonspacer"></div>
         <div>
-          <button type="submit">Submit Info</button>
+          <button className="assetsubmit" type="submit">
+            Submit Info
+          </button>
         </div>
+        <div className="buttonspacer"></div>
       </form>
     </div>
   );

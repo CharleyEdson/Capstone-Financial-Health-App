@@ -5,6 +5,9 @@ import Navbar from "../../components/NavBar/NavBar";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./MainPage.css";
+import moneytree from "../../assets/treemoney.png";
+import finances from "../../assets/finances.png";
+import assets from "../../assets/assets.png";
 
 const MainPage = () => {
   useEffect(() => {
@@ -21,23 +24,94 @@ const MainPage = () => {
         <Navbar />
       </div>
       <div className="contentcontainer">
-        <p className="title">Financial Fitness...</p>
-        <p className="title">Starts Here</p>
-        <br></br>
-        <button className="signup" onClick={() => navigate("/register")}>
-          Sign Up Here
-        </button>
-        <br></br>
-        <div className="box">
-          <h2 className="localtitle">Features:</h2>
-          <p>Display your finances</p>
-          <p>Visualize your assets</p>
-          <p>Helps you stick to a budget</p>
+        <div className="small">
+          <div className="topcontent">
+            <div className="wordsdiv">
+              <p className="title">Financial Fitness,</p>
+              <p className="title">Starts Here</p>
+              <br></br>
+              <button className="signup" onClick={() => navigate("/register")}>
+                Sign Up Here
+              </button>
+            </div>
+            <div className="topphoto">
+              <img src={moneytree} alt="picture of money and tree." />
+            </div>
+          </div>
+          <br></br>
+          <div className="featuresdiv">
+            <p className="localtitle">Features:</p>
+          </div>
+          <br></br>
+          <div className="bottomcontent">
+            <div className="finances">
+              <div>
+                <img
+                  src={finances}
+                  alt="picture of man looking at a computer with his personal finances on it."
+                />
+              </div>
+              <div className="spacer"></div>
+              <div className="wordscontent">
+                <p className="featurewords">Display your </p>
+                <p className="featurewords">finances</p>
+                <p className="description">See your finances</p>
+                <p className="description">grow over time.</p>
+                <button
+                  className="signup"
+                  onClick={() => navigate("/register")}
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+            <br></br>
+            <div className="visualize">
+              <div>
+                <img
+                  src={assets}
+                  alt="picture of computer with financial metrics on it."
+                />
+              </div>
+              <div className="spacer"></div>
+              <div className="wordscontent">
+                <p className="featurewords">Visualize your assets</p>
+                <p className="description">See all of your assets </p>
+                <p className="description">in once convenient location.</p>
+                <button
+                  className="signup"
+                  onClick={() => navigate("/register")}
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+            <br></br>
+            <div className="budget">
+              <div>
+                <img
+                  src={assets}
+                  alt="picture of computer with financial metrics on it."
+                />
+              </div>
+              <div className="spacer"></div>
+              <div className="wordscontent">
+                <p className="featurewords">Stick to your budget</p>
+                <p className="description">Visualize your budget.</p>
+                <p className="description"> Track your budget.</p>
+                <p className="description">Aid how and what to budget.</p>
+                <button
+                  className="signup"
+                  onClick={() => navigate("/register")}
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+            <p></p>
+          </div>
+          <br></br>
         </div>
-        <br></br>
-        <button className="signup" onClick={() => navigate("/register")}>
-          Sign Up Here
-        </button>
       </div>
     </div>
   );

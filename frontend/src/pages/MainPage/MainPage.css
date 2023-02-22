@@ -1,5 +1,5 @@
 .background {
-    /* background-color: rgb(199, 232, 242); */
+    background-color: rgb(199, 232, 242);
     color: rgb(48, 130, 167);
 
 }
@@ -11,14 +11,51 @@
     padding: 4px;
 }
 
+.small  {
+    width: 70%;
+}
+
 .contentcontainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
+    background-color: rgb(199, 232, 242);
+}
+
+.spacer {
+    width: 3rem;
+}
+
+.topcontent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-content: center;
     align-items: center;
+    justify-content: space-evenly;
+    
 }
+
+/* https://medium.com/@vitaliysteffensen/react-js-how-to-add-an-image-a-beginners-guide-66334f1d18be#:~:text=There%20are%20several%20different%20ways%20of%20inserting%20images%20in%20React.&text=Using%20the%20tag,the%20image%20not%20being%20available. */
+/* https://stackabuse.com/resizing-images-with-react/ */
+img {
+    height: 15rem;
+    width: fit-content;
+    object-fit: contain;
+    opacity: .6;
+    border-radius: 20rem;
+}
+
+.featuresdiv {
+    display: flex;
+    justify-content: center;
+}
+
+
+
 
 .title {
     font-size: 32.36px;
@@ -26,22 +63,65 @@
 }
 
 .localtitle {
-    text-align: center;
+    font-size: 32.36px;
+    color: #0A8754;
 }
 
-.box {
+/* .box {
     color: #0A8754;
     width: 300px;
     height: min-content;
-    /* border: 2px solid #334A51; */
+
     padding: 10px;
     overflow: auto;
     text-align: center;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: nowrap;
-    align-items: flex-start; */
+
     border-radius: 20px;
     
+} */
+
+.bottomcontent {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.wordscontent {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.featurewords {
+    color: #0A8754;
+    font-size: 20px;
+}
+
+.description {
+    font-size: 12.36px;
+    color: #0a8755ad;
+}
+
+.finances {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.visualize {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.budget {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
