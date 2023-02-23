@@ -1,20 +1,21 @@
 .examples {
     background-color: white;
-    border: 2px solid #000;
+    
     border-radius: 5px;
 }
 
 .assettype {
     font-size: 20px;
-    color: #EF946C;
+    color: #03045E;
 }
 
 .example {
     font-weight: lighter;
+    color: #48CAE4;
 }
 
 .close {
-    color: #0A8754;
+    color: #03045E;
     font-size: 32.36px;
     
 }

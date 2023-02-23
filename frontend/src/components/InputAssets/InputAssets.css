@@ -1,19 +1,20 @@
 .examplesdiv {
     background-color: white;
     border-radius: 20px;
-    border: #0A8754 2px solid;
-    color: #0A8754;
+    border: 2px solid #023E8A;
+    color: 0096C7;
 }
 
 .inputassets {
     background-color: white;
-    border: #0A8754 2px solid;
+    border: 2px solid #023E8A;
     border-radius: 20px;
-    color: #0A8754;
+    color: 0096C7;
 }
 
 .assetsubmit {
-    color: #0A8754;
+    color: #0096C7;
+    border-color: #0077B6;
 }
 
 .buttonspacer {

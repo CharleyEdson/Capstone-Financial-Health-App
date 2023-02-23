@@ -103,7 +103,7 @@ const InputLiabilities = () => {
           ></input>
           <div className="buttonspacer"></div>
           <div>
-            <button className="assetsubmit" type="submit">
+            <button className="container" type="submit">
               Submit Info
             </button>
           </div>

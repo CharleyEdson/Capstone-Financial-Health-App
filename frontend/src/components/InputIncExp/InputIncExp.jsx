@@ -94,40 +94,42 @@ const InputIncExp = ({ currentDate }) => {
 
   return (
     <div className="container">
-      <div className="inputassets">
-        <form
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}
-        >
-          <div>
-            <label>
-              Please enter your total Income/cash flow for the previous month:
-            </label>
-          </div>
-          <input
-            type="number"
-            value={monthlyIncome}
-            onChange={(event) => setMonthlyIncome(event.target.value)}
-          ></input>
-          <div>
-            <label>
-              Please enter your total Expenses for the previous month:
-            </label>
-          </div>
-          <input
-            type="number"
-            value={monthlyExpense}
-            onChange={(event) => setMonthlyExpense(event.target.value)}
-          ></input>
-          <div className="buttonspacer"></div>
-          <div>
-            <button className="assetsubmit" type="submit">
-              Submit
-            </button>
-          </div>
-          <div className="buttonspacer"></div>
-        </form>
+      <div className="box">
+        <div className="inputassets">
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
+            <div>
+              <label>
+                Please enter your total Income/cash flow for the previous month:
+              </label>
+            </div>
+            <input
+              type="number"
+              value={monthlyIncome}
+              onChange={(event) => setMonthlyIncome(event.target.value)}
+            ></input>
+            <div>
+              <label>
+                Please enter your total Expenses for the previous month:
+              </label>
+            </div>
+            <input
+              type="number"
+              value={monthlyExpense}
+              onChange={(event) => setMonthlyExpense(event.target.value)}
+            ></input>
+            <div className="buttonspacer"></div>
+            <div>
+              <button className="container" type="submit">
+                Submit
+              </button>
+            </div>
+            <div className="buttonspacer"></div>
+          </form>
+        </div>
       </div>
     </div>
   );

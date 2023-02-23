@@ -20,7 +20,6 @@ const EditPage = (props) => {
   const [userInfo, setUserInfo] = useState(false);
   const [projectedIncome, setProjectedIncome] = useState(false);
   const [user, token] = useAuth();
-
   const [userInfoObject, setUserInfoObject] = useState({});
 
   useEffect(() => {
@@ -91,20 +90,30 @@ const EditPage = (props) => {
       <br></br>
       <div className="background">
         <br></br>
+        <div className="spacer"></div>
+        <div className="spacer"></div>
+        <div className="spacer"></div>
+        <div className="spacer"></div>
         {editButtons === true ? (
           <div>
             <div className="buttons">
-              <button onClick={handleALSubmit}>
-                Update or Add Assets & Liabilities
-              </button>
-              <button onClick={handleProjectedIncomeSubmit}>
-                Projected Income
-              </button>
-              <button onClick={handleMonthlyInfoSubmit}>
-                Input Monthly Info
-              </button>
-              <button onClick={handleBudgetSubmit}>Budget</button>
-              <button onClick={handleUserInfoSubmit}>User Info</button>
+              <div className="row">
+                <button onClick={handleALSubmit}>
+                  Update or Add Assets & Liabilities
+                </button>
+                <button onClick={handleProjectedIncomeSubmit}>
+                  Projected Income
+                </button>
+              </div>
+              <div className="row">
+                <button onClick={handleMonthlyInfoSubmit}>
+                  Input Monthly Info
+                </button>
+                <button onClick={handleBudgetSubmit}>Budget</button>
+              </div>
+              <div className="row">
+                <button onClick={handleUserInfoSubmit}>User Info</button>
+              </div>
             </div>
           </div>
         ) : (
@@ -113,9 +122,7 @@ const EditPage = (props) => {
         {monthlyInfo === true ? (
           <div className="container">
             <br></br>
-            <h1 className="container">
-              Please enter updated information here{" "}
-            </h1>
+            <p className="title">Please enter updated information here </p>
             <MonthlyInfo />
             <br></br>
             <button onClick={handleEditButtons} className="container">
@@ -128,7 +135,7 @@ const EditPage = (props) => {
         {assetsLiabilities === true ? (
           <div className="container">
             <div className="assetspacer"></div>
-            <h1>Please enter updated assets/liabilities here, or new ones:</h1>
+            <p className="title">Add assets/liabilities here:</p>
             <InputAssets />
             <InputLiabilities />
             <br></br>
@@ -143,9 +150,11 @@ const EditPage = (props) => {
           <div>
             <br></br>
             <div className="container">
-              <h1 className="container">Please enter your new Budget </h1>
+              <p className="title"> Your Personalized Budget </p>
               <Budget />
-              <button onClick={handleEditButtons}>Complete</button>
+              <button className="container" onClick={handleEditButtons}>
+                Complete
+              </button>
             </div>
             <br></br>
           </div>
@@ -154,10 +163,11 @@ const EditPage = (props) => {
         )}
         {userInfo === true ? (
           <div className="container">
-            <h1>Please Update your user Info </h1>
             <FactFinderUpdate userInfo={userInfoObject} />
             <br></br>
-            <button onClick={handleEditButtons}>Complete</button>
+            <button className="container" onClick={handleEditButtons}>
+              Complete
+            </button>
             <br></br>
           </div>
         ) : (
@@ -166,10 +176,14 @@ const EditPage = (props) => {
         {projectedIncome === true ? (
           <div className="container">
             <br></br>
-            <h1>What is your Projected Income for the year? </h1>
+            <p className="title">
+              What is your Projected Income for the year?{" "}
+            </p>
             <ProjectedIncome />
             <br></br>
-            <button onClick={handleEditButtons}>Complete</button>
+            <button className="container" onClick={handleEditButtons}>
+              Complete
+            </button>
             <br></br>
           </div>
         ) : (

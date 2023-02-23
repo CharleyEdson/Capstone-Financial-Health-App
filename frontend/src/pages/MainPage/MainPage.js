@@ -8,6 +8,7 @@ import "./MainPage.css";
 import moneytree from "../../assets/treemoney.png";
 import finances from "../../assets/finances.png";
 import assets from "../../assets/assets.png";
+import budget from "../../assets/budget.png";
 
 const MainPage = () => {
   useEffect(() => {
@@ -27,8 +28,8 @@ const MainPage = () => {
         <div className="small">
           <div className="topcontent">
             <div className="wordsdiv">
-              <p className="title">Financial Fitness,</p>
-              <p className="title">Starts Here</p>
+              <p className="title">Financial fitness,</p>
+              <p className="title">starts here</p>
               <br></br>
               <button className="signup" onClick={() => navigate("/register")}>
                 Sign Up Here
@@ -90,7 +91,7 @@ const MainPage = () => {
             <div className="budget">
               <div>
                 <img
-                  src={assets}
+                  src={budget}
                   alt="picture of computer with financial metrics on it."
                 />
               </div>

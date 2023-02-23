@@ -10,17 +10,17 @@ li {
 
 .navBar {
   background: white;
-  box-shadow: 4px 2px 5px #334A51;
+  box-shadow: 4px 2px 5px #03045E;
   color: white;
   margin-bottom: 2rem;
   padding: 1.5rem 2rem;
-  background:#89d1e6;
+  background: white;
 }
 
 .navBar button {
   background: white;
-  border: 2px solid #334A51;
-  color: #334A51;
+  border: 2px solid #0077B6;
+  color: #0077B6;
   padding: 0.4rem 0.5rem;
   border-radius: 10px;
 }
@@ -38,7 +38,9 @@ li {
 }
 
 .name {
-  color: #334A51;
+  /* color: #334A51;
+   */
+   color: #0077B6;
 }
 
 .signbuttons {

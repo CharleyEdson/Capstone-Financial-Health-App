@@ -122,7 +122,6 @@ const HomePage = (props) => {
       <div className={`content ${isOpen ? "push" : ""}`}>
         <div className="background">
           <br></br>
-
           <div>
             <br></br>
             <br></br>
@@ -138,14 +137,16 @@ const HomePage = (props) => {
               <div>
                 <br></br>
                 <br></br>
-                <h2 className="welcomehome">Welcome Back, {user.first_name}</h2>
+                <p className="welcomehome">Welcome Back, {user.first_name}!</p>
                 {netWorth[0] ? (
                   <div className="center-component">
-                    <NetWorth
-                      className="component"
-                      netWorth={netWorth}
-                      changeInNetWorth={changeInNetWorth}
-                    />
+                    <div className="box">
+                      <NetWorth
+                        className="component"
+                        netWorth={netWorth}
+                        changeInNetWorth={changeInNetWorth}
+                      />
+                    </div>
                   </div>
                 ) : (
                   <p className="center-component">
@@ -156,7 +157,9 @@ const HomePage = (props) => {
                 <br></br>
                 {cashFlow[0] ? (
                   <div className="center-component">
-                    <CashFlow className="component" cashFlow={cashFlow} />
+                    <div className="box">
+                      <CashFlow className="component" cashFlow={cashFlow} />
+                    </div>
                   </div>
                 ) : (
                   <p className="center-component">
@@ -167,7 +170,9 @@ const HomePage = (props) => {
                 <br></br>
                 {income ? (
                   <div className="center-component">
-                    <Recommendations className="component" income={income} />
+                    <div className="box">
+                      <Recommendations className="component" income={income} />
+                    </div>
                   </div>
                 ) : (
                   <p className="center-component">

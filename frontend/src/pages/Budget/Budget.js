@@ -17,7 +17,7 @@ const Budget = (props) => {
   const [budgets, setBudgets] = useState([
     { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
   ]);
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
   const [expenses, setExpenses] = useState([
     {
       current_income: 11000,
@@ -67,13 +67,14 @@ const Budget = (props) => {
           Authorization: "Bearer " + token,
         },
       });
-      if (response["data"][0] === undefined)
-      {setCurrentBudget([
-        { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
-      ])}
-      else {setCurrentBudget(response["data"][0]);
-      setBudgets(response["data"]);}
-      
+      if (response["data"][0] === undefined) {
+        setCurrentBudget([
+          { id: 1, budget_value: 8100, date: "2023-01-23", user_id: 2 },
+        ]);
+      } else {
+        setCurrentBudget(response["data"][0]);
+        setBudgets(response["data"]);
+      }
     } catch (error) {
       console.log(error.response);
     }
@@ -95,14 +96,13 @@ const Budget = (props) => {
     }
   };
 
-  
   const options = {
     title: "Over/Under Budget",
     titleColor: "#334A51",
     legend: "none",
     is3d: true,
     lineWidth: 1,
-    bar: {width: 25},
+    bar: { width: 25 },
     corsshair: { trigger: "focus" },
     chartArea: {
       backgroundColor: {
@@ -114,40 +114,57 @@ const Budget = (props) => {
     opacity: 0.2,
   };
 
-  let headers = [["Month", "Over/Under Budget", { role: "style" }],];
-  let data = expenses.map((el) => Object.values(el).splice(5, 6))
-  let calcbudget = data.map((el) => [el[0],el[1]-currentBudget.budget_value].concat('color: #334A51; opacity: 1; stroke-color: #96AFB8; stroke-width: 1;')).reverse()
-  let final_data = headers.concat(calcbudget)
+  let headers = [["Month", "Over/Under Budget", { role: "style" }]];
+  let data = expenses.map((el) => Object.values(el).splice(5, 6));
+  let calcbudget = data
+    .map((el) =>
+      [el[0], el[1] - currentBudget.budget_value].concat(
+        "color: #334A51; opacity: 1; stroke-color: #96AFB8; stroke-width: 1;"
+      )
+    )
+    .reverse();
+  let final_data = headers.concat(calcbudget);
 
   return (
     <div>
       <div>{<UserNavBar />}</div>
-        <div className="container">
-        <h2>Budget Page</h2>
-        <div>
+      <div className="container">
+        <div className="box">
           <p>Current Budget: ${currentBudget.budget_value}</p>
         </div>
-        <div>
-          <p onClick={() => setShowModal(true)}>Need to update your budget? <h3>Click Here</h3></p>
-          </div>
-        </div>
-        <div>
-            <UpdateBudgetModal open={showModal} onClose={()=>setShowModal(false)} user={user} token={token}/>
-        </div>
-        <br></br>
-        <div>
-          <h3 className="container">Over/Under Budget</h3>
-          <div className="graphcontainer">
-          <Chart
-        chartType="ColumnChart"
-        width="100%"
-        height="500px"
-        data={final_data}
-        options={options}
-      />
-            </div>
+        <div className="spacer"></div>
+        <div className="box">
+          <p onClick={() => setShowModal(true)}>
+            Need to update your budget? <h3 className="click">Click Here</h3>
+          </p>
         </div>
       </div>
+      <div className="spacer"></div>
+      <div>
+        <UpdateBudgetModal
+          open={showModal}
+          onClose={() => setShowModal(false)}
+          user={user}
+          token={token}
+        />
+      </div>
+      <br></br>
+      <div>
+        <p className="featurewords">Historical Over/Under Budget Chart:</p>
+        <div className="box">
+          <div className="graphcontainer">
+            <Chart
+              chartType="ColumnChart"
+              width="100%"
+              height="500px"
+              data={final_data}
+              options={options}
+            />
+          </div>
+        </div>
+        <div className="spacer"></div>
+      </div>
+    </div>
   );
 };
 

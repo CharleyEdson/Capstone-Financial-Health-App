@@ -17,7 +17,7 @@ const UserNavBar = () => {
         onClick={() => setOpen(!isOpen)}
       >
         <div className="navbarcontent">
-          <div>
+          <div className="movehamicon">
             <i className={`fa fa-bars ${isOpen ? "open" : ""}`} />
             <span className="hamburger-text">
               <Link
@@ -30,9 +30,11 @@ const UserNavBar = () => {
           </div>
         </div>
       </div>
-          <div>
-            <button onClick={logoutUser}>Logout</button>
-          </div>
+      <div>
+        <button className="navbutton" onClick={logoutUser}>
+          Logout
+        </button>
+      </div>
       {isOpen && (
         <ul className="nav-menu">
           <li>

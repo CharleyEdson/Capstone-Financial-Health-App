@@ -2,32 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { Slider, Box } from "@material-ui/core";
-import "./UpdateBudgetModal.css"
+import "./UpdateBudgetModal.css";
 
-const UpdateBudgetModal = ({open, onClose, user, token}) => {
-    const [value, setValue] = useState(20);
-    const [income, setIncome] = useState(0)
-    useEffect(() => {
-        fetchIncome();
-      }, []);
-    if (!open) return null;
+const UpdateBudgetModal = ({ open, onClose, user, token }) => {
+  const [value, setValue] = useState(20);
+  const [income, setIncome] = useState(0);
+  useEffect(() => {
+    fetchIncome();
+  }, []);
+  if (!open) return null;
 
-    async function fetchIncome() {
-      try {
-          let response = await axios.get(
-              "http://127.0.0.1:8000/api/income/",
-            {
-              headers: {
-                Authorization: "Bearer " + token,
-              },
-            }
-          );
-          setIncome(response["data"][0]);
-        } catch (error) {
-          console.log(error.response);
-        }
-      };
-
+  async function fetchIncome() {
+    try {
+      let response = await axios.get("http://127.0.0.1:8000/api/income/", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      setIncome(response["data"][0]);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }
 
   function formatDate() {
     var d = new Date();
@@ -65,7 +61,6 @@ const UpdateBudgetModal = ({open, onClose, user, token}) => {
   }
 
   function handleSubmit(event) {
-
     let userBudget = {
       budget_value: value,
       date: newdate,
@@ -78,28 +73,46 @@ const UpdateBudgetModal = ({open, onClose, user, token}) => {
 
   return (
     <div>
-      <div>
+      <div className="box">
         <div className="container">
-
-          <p>Please use the slider to pick your monthly budget.</p>
-          <p>
-            Based upon your inputted information, below are the recommended
-            values for expenses to help you determine your budget.
-          </p>
-          <p> Mortgage/Rent: ${parseInt(.36 * income.value)}/month</p>
-          <p> Other Essentials(ie: food, health care, transportation): ${parseInt(.14 * income.value)}/month</p>
-          <p> Investing: ${parseInt(.2 * income.value)}</p>
-          <p> Discretionary/fun expendiures: ${parseInt(.3 * income.value)}/month</p>
-          <p> For a total of: ${parseInt(income.value)}</p>
+          <div>
+            <p>Please use the slider to pick your monthly budget.</p>
+            <p>
+              Based upon your inputted information, below are the recommended
+              values for expenses to help you determine your budget:
+            </p>
+            <div className="spacer"></div>
+            <p>
+              {" "}
+              Mortgage/Rent:
+              <p className="value"> ${parseInt(0.36 * income.value)}/month</p>
+            </p>
+            <p>
+              {" "}
+              Other Essentials(ie: food, health care, transportation):{" "}
+              <p className="value"> ${parseInt(0.14 * income.value)}/month</p>
+            </p>
+            <p> Investing:</p>
+            <p className="value"> ${parseInt(0.2 * income.value)}</p>
+            <p> Discretionary/fun expendiures: </p>
+            <p className="value">
+              {" "}
+              ${parseInt(0.3 * income.value)}
+              /month
+            </p>
+            <p>
+              {" "}
+              For a total of:<p className="value"> ${parseInt(income.value)}</p>
+            </p>
+          </div>
         </div>
         <form onSubmit={handleSubmit} className="container">
           <Box className="slider">
             <Slider
               value={value}
               onChange={changeValue}
-              style={{ width: 300 , color: "#A187AF"}}
+              style={{ width: 300, color: "#A187AF" }}
               min={0}
-              
               max={income.value * 1.3}
               defaultValue={20}
               step={50}

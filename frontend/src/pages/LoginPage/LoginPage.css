@@ -2,20 +2,14 @@
   color: red;
 }
 
-.background {
-  /* background-color: rgb(137, 209, 230); */
-  color: rgb(48, 130, 167);
-  height: 60rem;
-}
-
 .registerbutton {
+    
   background-color: white;
-  color: rgb(137, 209, 230);
-  border-color: grey;
+  color: #023E8A;
+  border-color: #0077B6;
 
 }
 
-.titles {
-  color: #334A51;
-  justify-content: center;
+.createaccount {
+  color: #48CAE4;
 }
