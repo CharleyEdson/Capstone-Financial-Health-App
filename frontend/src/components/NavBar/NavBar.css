@@ -8,6 +8,17 @@ li {
   font-size: 1.25rem;
 }
 
+@media only screen and (max-width: 600px) {
+.navBar {
+  box-shadow: 4px 2px 5px #03045E;
+  margin-bottom: 2rem;
+  padding: 1.5rem 2rem;
+  background: white;
+
+}
+}
+
+@media only screen and (min-width: 601px) {
 .navBar {
   background: white;
   box-shadow: 4px 2px 5px #03045E;
@@ -17,6 +28,7 @@ li {
   background: white;
 }
 
+}
 .navBar button {
   background: white;
   border: 2px solid #0077B6;

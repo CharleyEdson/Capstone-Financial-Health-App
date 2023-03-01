@@ -1,7 +1,16 @@
+
+@media only screen and (max-width: 600px) {
 .background {
     background-color: #CAF0F8;
- 
-
+    width: fit-content;
+    height: auto;
+}
+}
+@media only screen and (min-width: 601px) {
+.background {
+    background-color: #CAF0F8;
+    height: auto;
+}
 }
 
 .signup {
