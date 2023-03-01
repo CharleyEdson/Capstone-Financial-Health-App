@@ -10,6 +10,11 @@
     background-color: #CAF0F8;
 }
 
+.navbar {
+  position: sticky;
+  position: -webkit-sticky;
+}
+
 .welcomehome {
     color: #03045E;
     

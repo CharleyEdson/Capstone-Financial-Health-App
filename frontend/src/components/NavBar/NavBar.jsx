@@ -18,8 +18,10 @@ const Navbar = () => {
           </li>
         </div>
         <div className="signbuttons">
-          <li >
-            <button onClick={() => navigate("/register")}>Sign Up</button>
+          <li>
+            {user ? (
+              <button onClick={() => navigate("/home")}>Home</button>
+            ): (<button onClick={() => navigate("/register")}>Sign Up</button>)}
           </li>
           <li>
             {user ? (

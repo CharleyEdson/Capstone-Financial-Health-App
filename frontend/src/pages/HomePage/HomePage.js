@@ -118,7 +118,7 @@ const HomePage = (props) => {
 
   return (
     <>
-      <UserNavBar />
+      <UserNavBar className="navbar"/>
       <div className={`content ${isOpen ? "push" : ""}`}>
         <div className="background">
           <br></br>
