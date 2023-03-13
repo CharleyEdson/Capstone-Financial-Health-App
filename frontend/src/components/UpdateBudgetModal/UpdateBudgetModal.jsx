@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import { Slider, Box } from "@material-ui/core";
+import { Slider, Box, styled } from "@material-ui/core";
 import "./UpdateBudgetModal.css";
+
 
 const UpdateBudgetModal = ({ open, onClose, user, token }) => {
   const [value, setValue] = useState(20);
@@ -111,13 +112,15 @@ const UpdateBudgetModal = ({ open, onClose, user, token }) => {
             <Slider
               value={value}
               onChange={changeValue}
-              style={{ width: 300, color: "#A187AF" }}
+              style={{ width: 400, color: "#0096C7", height: 10}}
               min={0}
               max={income.value * 1.3}
               defaultValue={20}
               step={50}
               getAriaValueText={getText}
               valueLabelDisplay="auto"
+              
+
             />
           </Box>
           <button type="submit">Submit</button>

@@ -81,7 +81,6 @@ const InputIncExp = ({ currentDate }) => {
   let year = formatYear();
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
     let currents = {
       current_income: monthlyIncome,
       current_expense: monthlyExpense,
